@@ -11,32 +11,37 @@
 						<form class="auth-form login-form" method="POST" action="{{ route('register.store') }}">  
                             @csrf     
                             <div class="email mb-3">
-								<label class="sr-only" for="signup-email">Nama</label>
-								<input id="signup-name" name="name" type="text" class="form-control signup-name" placeholder="Nama Panjang" required="required">
+								<i><span class="text-danger">*</span> Wajib</i>			
+								<input id="signup-name" name="name" type="text" class="form-control signup-name" 
+								placeholder="Nama" value="{{ old('name') }}" required="required"> 
+								<a>Maksimal 255 Karakter, Alphabet</a>
 							</div>
                             <div class="email mb-3">
-								<label class="sr-only" for="signup-email">Username</label>
-								<input id="signup-name" name="username" type="text" class="form-control signup-name" placeholder="Username" required="required">
+								<i><span class="text-danger">*</span> Wajib</i>
+								<input id="signup-name" name="username" type="text" class="form-control signup-name" 
+								placeholder="Username" value="{{ old('username') }}" required="required">
 							</div> 
 							<div class="email mb-3">
-								<label class="sr-only" for="signin-email">Email</label>
-                                <input id="signin-email" type="email" class="form-control signin-email @error('email') is-invalid @enderror" name="email"  placeholder="Email address" value="{{ old('email') }}" required autocomplete="email" autofocus>
+								<i><span class="text-danger">*</span> Wajib</i>
+                                <input id="signin-email" type="email" class="form-control signin-email @error('email') is-invalid @enderror" 
+								name="email"  placeholder="Email address" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div><!--//form-group-->
+							
 							<div class="password mb-3">
-								<label class="sr-only" for="signin-password">Password</label>
-                                <input id="password" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password"  placeholder="Password" required autocomplete="current-password">
+								<i><span class="text-danger">*</span> Wajib</i>
+								<i id="eyeChangeId" class="fa fa-eye" onclick="eyeEnableOrDisable()"></i>
+                                <input id="passwordInputID" type="password" class="form-control signin-password @error('password') is-invalid @enderror" 
+								name="password"  placeholder="Password" required autocomplete="current-password"> 
 							</div><!--//form-group-->
-                            <div class="password mb-3">
-                                <label class="sr-only" for="signin-password">{{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password">
-                            </div>
+							
                             <div class="email mb-3">
-								<select class="form-select" name="role" >
+								<i><span class="text-danger">*</span> Wajib</i>
+								<select class="form-select" name="role" value="{{ old('role') }}">
 									<option selected value="" disabled selected>Select your option</option>
                                     <option value="1">Owner</option>
 									<option value="2">Outbound</option>
@@ -48,16 +53,22 @@
 								</select>
 							</div>
                             <div class="email mb-3">
+								<i><span class="text-danger">*</span> Wajib</i>
 								<label class="sr-only" for="signup-email">Nomor KTP</label>
-								<input id="signup-name" name="id_card_number" type="text" class="form-control signup-name" placeholder="Nomor KTP" required="required">
+								<input id="signup-name" name="id_card_number" type="text" class="form-control signup-name" 
+								placeholder="Nomor KTP" value="{{ old('id_card_number') }}" required="required">
 							</div>
                             <div class="email mb-3">
+								<i><span class="text-danger">*</span> Wajib</i>
 								<label class="sr-only" for="signup-email">Nomor Telepon</label>
-								<input id="signup-name" name="phone_number" type="text" class="form-control signup-name" placeholder="Nomor Telepon" required="required">
+								<input id="signup-name" name="phone_number" type="text" class="form-control signup-name" 
+								placeholder="Nomor Telepon" value="{{ old('phone_number') }}" required="required">
 							</div>
                             <div class="email mb-3">
+								<i><span class="text-danger">*</span> Opsional</i>
 								<label class="sr-only" for="signup-email">Nomor Whatsapp</label>
-								<input id="signup-name" name="whatsapp_number" type="text" class="form-control signup-name" placeholder="Nomor Whatsapp">
+								<input id="signup-name" name="whatsapp_number" type="text" class="form-control signup-name" 
+								value="{{ old('whatsapp_number') }}" placeholder="Nomor Whatsapp">
 							</div>
                             <div class="text-center">
 							    <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Registrasi Sekarang</button>
@@ -68,4 +79,32 @@
 		    </div><!--//flex-column-->   
 	    </div><!--//auth-main-col-->   
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	//Javascript function definition
+	function eyeEnableOrDisable() 
+	{
+		//getting type of the password field element by jQuery
+		var x = $('#passwordInputID').prop("type"); 
+		if (x === "password") 
+		{
+			//changing input type text
+			$('#passwordInputID').prop("type", "text");
+			//removing fa-eye class
+			$('#eyeChangeId').removeClass('fa-eye'); 
+			//adding fa-eye-slash class
+			$('#eyeChangeId').addClass('fa-eye-slash'); 
+		} 
+		else 
+		{
+			//changing type passord
+			$('#passwordInputID').prop("type", "password");
+			//removinf fa-eye-slash class
+			$('#eyeChangeId').removeClass('fa-eye-slash'); 
+			//adding fa-eye class
+			$('#eyeChangeId').addClass('fa-eye'); 
+		}
+	}
+</script>
 @endsection

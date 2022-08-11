@@ -20,6 +20,9 @@
     <link id="theme-style" rel="stylesheet" href="{{ asset('admin/assets/css/portal.css') }}" 
     type="text/css">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head> 
 
 <body class="app">   	

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -34,8 +36,43 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function messages() {
+        return [
+            'name.required'=>'Nama tidak dapat dikosongi',
+
+            'username.required'=>'Username tidak dapat dikosongi',
+            'username.min'=>'Karakter tidak boleh kurang dari 4',
+
+            'email.required'=>'Email tidak dapat dikosongi',
+
+            'password.required'=>'Email tidak dapat dikosongi',
+            'password.min'=>'Karakter tidak boleh kurang dari 8',
+
+            'role.required'=>'Email tidak dapat dikosongi',
+
+            'id_card_number.required'=>'Email tidak dapat dikosongi',
+            'id_card_number.min'=>'Karakter harus kurang dari 16',
+
+            'phone_number.required'=>'Email tidak dapat dikosongi',
+            'phone_number' => 'Karakter tidak boleh kurang dari 10'
+            
+        ];
+    }
+
     protected function store(Request $request)
     {
+
+        $validator = $request->validate([
+            'name' => 'required|max:255|alpha',
+            'username' => 'required|min:4|alpha-dash',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'role' => 'required',
+            'id_card_number' => 'required|string|min:16|max:16',
+            'phone_number' => 'required|min:10|max:15',
+        ]);
+
         return User::create([
             'name' => $request['name'],
             'username' => $request['username'],
@@ -47,6 +84,12 @@ class UserController extends Controller
             'whatsapp_number' => $request['whatsapp_number'],
         ]);
 
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
+        Alert::toast('Data baru berhasil dibuat.', 'success');
         return redirect()->route('dashboard.index');
     }
 

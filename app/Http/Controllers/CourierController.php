@@ -2,12 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Courier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
-class UserController extends Controller
+class CourierController extends Controller
 {
+
+    public function dashboard()
+    {
+        return view('courier.dashboard');
+    }
+
+    public function account()
+    {
+        return view('courier.account');
+    }
+
+    public function order()
+    {
+        return view('courier.order');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('register.index');
+        //
     }
 
     /**
@@ -34,29 +49,18 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    protected function store(Request $request)
+    public function store(Request $request)
     {
-        return User::create([
-            'name' => $request['name'],
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'role' => $request['role'],
-            'id_card_number' => $request['id_card_number'],
-            'phone_number' => $request['phone_number'],
-            'whatsapp_number' => $request['whatsapp_number'],
-        ]);
-
-        return redirect()->route('dashboard.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Courier  $courier
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Courier $courier)
     {
         //
     }
@@ -64,10 +68,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Courier  $courier
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Courier $courier)
     {
         //
     }
@@ -76,10 +80,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Courier  $courier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Courier $courier)
     {
         //
     }
@@ -87,10 +91,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Courier  $courier
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Courier $courier)
     {
         //
     }

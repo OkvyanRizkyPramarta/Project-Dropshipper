@@ -36,7 +36,7 @@
                             @csrf       
 							<div class="email mb-3">
 								<label class="sr-only" for="signin-email">Email</label>
-                                <input id="signin-email" type="email" class="form-control signin-email @error('email') is-invalid @enderror" name="email"  placeholder="Email address" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Masukkan Username" required  autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                             </div><!--//form-group-->
 							<div class="password mb-3">
 								<label class="sr-only" for="signin-password">Password</label>
-                                <input id="password" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password"  placeholder="Password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password"  placeholder="Masukkan Password" required autocomplete="current-password">
 								<div class="extra mt-3 row justify-content-between">
 									<div class="col-6">
 										<div class="form-check">

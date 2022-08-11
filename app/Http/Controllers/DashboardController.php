@@ -17,6 +17,11 @@ class DashboardController extends Controller
         return view('dashboard.index');
     }
 
+    public function warning()
+    {
+        return view('warning.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

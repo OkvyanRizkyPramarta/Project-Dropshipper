@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'order_date',
+        'username',
+        'order_id',
+        'customer_address',
+        'customer_phone',
+        'user_kelurahan',
+        'user_kecamatan',
+        'cod_ammount',
+        'status_sending',
+        'status_cod_ammount',
+        'status_pod',
+        'status_order',
+        'keterangan',
+    ];
+
+    public static function index()
+    {
+        return Order::all();
+    }
+
+    public static function updateStatusSent($id)
+    {
+        Order::where('id', $id)->update([
+            'status' => 'sent',
+        ]);
+    }
 }

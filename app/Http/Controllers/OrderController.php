@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+use App\Imports\ImportData;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +17,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order.index');
+        $order = Order::all();
+        return view('order.index', compact('order'));
     }
 
     /**
@@ -22,10 +26,49 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function import(Request $request)
     {
-        //
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        // menangkap file excel
+        $file = $request->file('file');
+    
+        // membuat nama file unik
+        $nama_file = $file->hashName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        // import data
+        $import = Excel::import(new ImportData(), storage_path('app/public/excel/'.$nama_file));
+
+        //remove from server
+        Storage::delete($path);
+
+        if($import) {
+            //redirect
+            return redirect()->route('order.index')->with(['success' => 'Data Berhasil Diimport!']);
+        } else {
+            //redirect
+            return redirect()->route('order.index')->with(['error' => 'Data Gagal Diimport!']);
+        }
     }
+
+    public function importView(Request $request){
+        return view('importFile');
+    }
+
+    /*public function import(Request $request){
+        Excel::import(new ImportData, $request->file('file')->store('files'));
+        return redirect()->back();
+    }*/
+
+    /*public function exportUsers(Request $request){
+        return Excel::download(new ExportUser, 'users.xlsx');
+    }*/
 
     /**
      * Store a newly created resource in storage.

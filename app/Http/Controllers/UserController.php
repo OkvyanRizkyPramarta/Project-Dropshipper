@@ -63,17 +63,17 @@ class UserController extends Controller
     protected function store(Request $request)
     {
 
-        $validator = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|alpha',
             'username' => 'required|min:4|alpha-dash',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'role' => 'required',
-            'id_card_number' => 'required|string|min:16|max:16',
-            'phone_number' => 'required|min:10|max:15',
+            'id_card_number' => 'required|numeric|min:16|max:16',
+            'phone_number' => 'required|numeric|min:10|max:15',
         ]);
 
-        return User::create([
+        User::create([
             'name' => $request['name'],
             'username' => $request['username'],
             'email' => $request['email'],

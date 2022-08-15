@@ -32,9 +32,11 @@ Auth::routes([
 Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    Route::post('/order',[OrderController::class,'import'])->name('import');
     Route::resource('/document', DocumentController::class);
     Route::get('/account', [AccountController::class, 'index'])->name('owner.account');
     Route::resource('/register', UserController::class);
+    Route::get('/user',[AccountController::class, 'user'])->name('account.user');
 });
 
 Route::middleware(['auth', 'Kurir'])->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -15,6 +16,15 @@ class AccountController extends Controller
     public function index()
     {
         return view('account.index');
+    }
+
+    public function user()
+    {
+        /*$account = Account::all();
+        $user = User::all();
+        return view('account.user', compact('account', 'user'));*/
+        $user = User::all();
+        return view('account.user', compact('user'));
     }
 
     /**

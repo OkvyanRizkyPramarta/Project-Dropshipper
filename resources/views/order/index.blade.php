@@ -87,14 +87,36 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_sending == 'pending')
-															<span>Pending</span>
+														<a href="{{ route('order.updateStatusSent', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
 														@else
-															<span>Sent</span>
+														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>SENT</span>
 														@endif
 													</span>
 												</td>
-												<td class="cell"><span class="badge bg-success">{{ $o->status_cod_ammount}}</span></td>
-												<td class="cell"><span class="badge bg-success">{{ $o->status_pod}}</span></td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_cod_ammount == 'pending')
+														<a href="{{ route('order.updateStatusPaid', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PAID</span>
+														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_pod == 'pending')
+														<a href="{{ route('order.updateStatusPod', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>POD</span>
+														@endif
+													</span>
+												</td>
 												<td class="cell"><span class="badge bg-success">{{ $o->status_order}}</span></td>
 												<td class="cell">{{ $o->keterangan}}</td>
 											</tr>

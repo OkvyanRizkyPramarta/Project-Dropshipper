@@ -30,10 +30,22 @@ class Order extends Model
         return Order::all();
     }
 
-    public static function updateStatusSent($id)
+    public static function updateStatusSent(Order $order)
     {
-        Order::where('id', $id)->update([
-            'status' => 'sent',
+        $order->update([
+            'status_sending' => 'sent',
+        ]);
+    }
+    public static function updateStatusPaid(Order $order)
+    {
+        $order->update([
+            'status_cod_ammount' => 'paid',
+        ]);
+    }
+    public static function updateStatusPod(Order $order)
+    {
+        $order->update([
+            'status_pod' => 'pod',
         ]);
     }
 }

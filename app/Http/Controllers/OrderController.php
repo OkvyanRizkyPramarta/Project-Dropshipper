@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ImportData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -59,6 +61,27 @@ class OrderController extends Controller
 
     public function importView(Request $request){
         return view('importFile');
+    }
+
+    public function updateStatusSent(Order $order)
+    {
+        Order::updateStatusSent($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusPaid(Order $order)
+    {
+        Order::updateStatusPaid($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusPod(Order $order)
+    {
+        Order::updateStatusPod($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
     }
 
     /*public function import(Request $request){

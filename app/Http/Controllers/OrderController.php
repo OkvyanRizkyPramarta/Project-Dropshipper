@@ -84,6 +84,13 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusDel(Order $order)
+    {
+        Order::updateStatusDel($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     /*public function import(Request $request){
         Excel::import(new ImportData, $request->file('file')->store('files'));
         return redirect()->back();

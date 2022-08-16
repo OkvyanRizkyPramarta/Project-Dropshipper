@@ -48,4 +48,26 @@ class Order extends Model
             'status_pod' => 'pod',
         ]);
     }
+
+    public static function updateStatusDel(Order $order)
+    {
+        if ($order->status_sending == 'pending') {
+            $order->update([
+                'status_order' => 'undelivered',
+            ]);
+        } else if ($order->status_cod_ammount == 'pending') {
+            $order->update([
+                'status_order' => 'undelivered',
+            ]);
+        } else if ($order->status_pod == 'pending') {
+            $order->update([
+                'status_order' => 'undelivered',
+            ]);
+        } else {
+            $order->update([
+                'status_order' => 'delivered',
+            ]);
+        }
+        
+    }
 }

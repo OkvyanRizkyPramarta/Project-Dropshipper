@@ -36,6 +36,7 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/order/{order}/updateStatusSent', [OrderController::class, 'updateStatusSent'])->name('order.updateStatusSent');
     Route::get('/order/{order}/updateStatusPaid', [OrderController::class, 'updateStatusPaid'])->name('order.updateStatusPaid');
     Route::get('/order/{order}/updateStatusPod', [OrderController::class, 'updateStatusPod'])->name('order.updateStatusPod');
+    Route::get('/order/{order}/updateStatusDel', [OrderController::class, 'updateStatusDel'])->name('order.updateStatusDel');
     Route::resource('/document', DocumentController::class);
     Route::get('/account', [AccountController::class, 'index'])->name('owner.account');
     Route::resource('/register', UserController::class);

@@ -117,7 +117,17 @@
 														@endif
 													</span>
 												</td>
-												<td class="cell"><span class="badge bg-success">{{ $o->status_order}}</span></td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_order == 'undelivered' && '$o->status_pod == pod && $o->status_paid == paid ')
+														<a href="{{ route('order.updateStatusDel', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>UNDELIVERED</span>
+														@else
+														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>DELIVERED</span>
+														@endif
+													</span>
+												</td>
 												<td class="cell">{{ $o->keterangan}}</td>
 											</tr>
 										@endforeach

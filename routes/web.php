@@ -41,6 +41,7 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('owner.account');
     Route::resource('/register', UserController::class);
     Route::get('/user',[AccountController::class, 'user'])->name('account.user');
+    Route::get('/user/{id}', [AccountController::class, 'detailUser'])->name('account.detailUser');;
 });
 
 Route::middleware(['auth', 'Kurir'])->group(function () {

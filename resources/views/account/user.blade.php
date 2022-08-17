@@ -48,7 +48,11 @@
 												<td class="cell">{{ $u->username }}</td>
 												<td class="cell">{{ $u->name }}</td>
 												<td class="cell">{{ $u->role }}</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell">
+													<a class="btn-sm app-btn-secondary" href="{{ route('account.detailUser', $u->id) }}">
+														View
+													</a>
+												</td>
 											</tr>
 										@endforeach
 										</tbody>

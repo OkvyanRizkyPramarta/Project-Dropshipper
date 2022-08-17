@@ -27,6 +27,12 @@ class AccountController extends Controller
         return view('account.user', compact('user'));
     }
 
+    public function detailUser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('account.detail', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

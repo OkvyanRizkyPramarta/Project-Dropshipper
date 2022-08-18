@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourierController;
+use App\Http\Controllers\InformationController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,5 @@ Route::middleware(['auth', 'Kurir'])->group(function () {
     Route::get('/dashboard/kurir', [CourierController::class, 'dashboard'])->name('dashboardkurir.index');
     Route::get('/account/kurir', [CourierController::class, 'account'])->name('courier.account');
     Route::get('/order/kurir', [CourierController::class, 'order'])->name('courier.order');
+    Route::get('/message', [InformationController::class, 'courierMessage'])->name('courier.message');
 });

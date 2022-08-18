@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', '- Order')
+@section('title', '- Detail Profil')
 
 @section('content')
         <div class="app-content pt-3 p-md-3 p-lg-4">

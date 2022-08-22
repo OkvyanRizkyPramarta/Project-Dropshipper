@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
-class Information extends Model
+class Informations extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -15,6 +16,11 @@ class Information extends Model
 
     public static function index()
     {
-        return Information::all();
+        return Informations::all();
+    }
+
+    public static function store(Request $request)
+    {
+        Informations::create($request->all());
     }
 }

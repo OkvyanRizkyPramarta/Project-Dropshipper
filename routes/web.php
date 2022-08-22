@@ -50,5 +50,10 @@ Route::middleware(['auth', 'Kurir'])->group(function () {
     Route::get('/dashboard/kurir', [CourierController::class, 'dashboard'])->name('dashboardkurir.index');
     Route::get('/account/kurir', [CourierController::class, 'account'])->name('courier.account');
     Route::get('/order/kurir', [CourierController::class, 'order'])->name('courier.order');
-    Route::get('/message', [InformationController::class, 'courierMessage'])->name('courier.message');
+    Route::get('/order/kurir/{order}/updateStatusSent', [CourierController::class, 'updateStatusSent'])->name('order.updateStatusSent');
+    Route::get('/order/kurir/{order}/updateStatusPaid', [CourierController::class, 'updateStatusPaid'])->name('order.updateStatusPaid');
+    Route::get('/order/kurir/{order}/updateStatusPod', [CourierController::class, 'updateStatusPod'])->name('order.updateStatusPod');
+    Route::get('/order/kurir/{order}/updateStatusDel', [CourierController::class, 'updateStatusDel'])->name('order.updateStatusDel');
+    Route::get('/message/kurir', [CourierController::class, 'courierMessage'])->name('courier.message');
+    Route::post('/message/kurir', [CourierController::class, 'courierMessageStore'])->name('courier.messageStore');
 });

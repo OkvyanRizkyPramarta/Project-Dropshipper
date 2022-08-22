@@ -80,7 +80,7 @@
 	        <div class="sidepanel-inner d-flex flex-column">
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 		        <div class="app-branding">
-		            <a class="app-logo" href="{{ route('dashboard.index') }}">
+		            <a class="app-logo" href="{{ route('dashboardkurir.index') }}">
                         <img class="logo-icon me-2" src="{{ asset('admin/assets/images/app-logo.svg') }}" alt="logo">
                         <span class="logo-text">DROPSHIPPER</span>
                     </a>
@@ -134,6 +134,7 @@
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="{{ route('register.index') }}">Registrasi Akun</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="#">Akun Terdaftar</a></li>
+									<li class="submenu-item"><a class="submenu-link" href="{{ route('courier.message') }}">Halaman Lapor</a></li>
 						        </ul>
 					        </div>
 					    </li>

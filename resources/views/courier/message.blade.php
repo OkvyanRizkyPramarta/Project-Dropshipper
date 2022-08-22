@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.courier.master')
 
 @section('title', '- Keterangan')
 
@@ -18,10 +18,11 @@
 		                <div class="app-card app-card-settings p-4">
 						    
 						    <div class="app-card-body">
-							    <form class="settings-form">
+							    <form class="settings-form" action="{{ route('courier.messageStore') }}" method="POST" enctype="multipart/form-data">
+								@csrf
 									<div class="mb-3">
 									    <label for="setting-input-2" class="form-label">Username</label>
-									    <input type="text" class="form-control" id="setting-input-2" value="Steve Doe" required>
+									    <input type="text" class="form-control" id="setting-input-2" name="username" value="{{ Auth::user()->username }}" required disabled>
 									</div>
 								    <div class="mb-3">
 									    <label for="setting-input-3" class="form-label">Keterangan</label>
@@ -38,7 +39,7 @@
                                             resize: none;
                                         }
                                         </style>
-									    <textarea rows="7" cols="80" style="webkit-border-radius: 5px;"></textarea>
+									    <textarea rows="7" cols="80" name="description" style="webkit-border-radius: 5px;"></textarea>
 									</div>
 									<button type="submit" class="btn app-btn-primary" >Kirim</button>
 							    </form>

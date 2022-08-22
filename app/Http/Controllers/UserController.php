@@ -84,13 +84,8 @@ class UserController extends Controller
             'whatsapp_number' => $request['whatsapp_number'],
         ]);
 
-        if ($validator->fails()) {
-            Alert::toast($validator->messages()->all()[0], 'error');
-            return redirect()->back()->withInput();
-        }
-
-        Alert::toast('Data baru berhasil dibuat.', 'success');
-        return redirect()->route('dashboard.index');
+        return redirect()->route('account.user');
+        
     }
 
     /**

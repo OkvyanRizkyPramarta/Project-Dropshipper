@@ -14,6 +14,11 @@
 								<i><span class="text-danger">*</span> Wajib</i>			
 								<input id="signup-name" name="name" type="text" class="form-control signup-name" 
 								placeholder="Nama" value="{{ old('name') }}" required="required"> 
+								@error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
 								<a>Maksimal 255 Karakter, Alphabet</a>
 							</div>
                             <div class="email mb-3">

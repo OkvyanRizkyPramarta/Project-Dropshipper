@@ -46,6 +46,14 @@ class LoginController extends Controller
                 $this->redirectTo = '/dashboard';
                 return $this->redirectTo;
                 break;
+            case 'Admintraffic':
+                $this->redirectTo = '/dashboard/admintraffic';
+                return $this->redirectTo;
+                break;
+            case 'Kasir':
+                $this->redirectTo = '/dashboard/kasir';
+                return $this->redirectTo;
+                break;
             case 'Kurir':
                 $this->redirectTo = '/dashboard/kurir';
                 return $this->redirectTo;

@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\AdmintrafficController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,19 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::resource('/register', UserController::class);
     Route::get('/user',[AccountController::class, 'user'])->name('account.user');
     Route::get('/user/{id}', [AccountController::class, 'detailUser'])->name('account.detailUser');;
+});
+
+Route::middleware(['auth', 'Admintraffic'])->group(function () {
+    Route::get('/warning', [DashboardController::class, 'warning'])->name('warning.index');
+    Route::get('/dashboard/admintraffic', [AdmintrafficController::class, 'dashboard'])->name('dashboardadmintraffic.index');
+    Route::get('/account/admintraffic', [AdmintrafficController::class, 'account'])->name('admintraffic.account');
+    Route::get('/order/admintraffic', [AdmintrafficController::class, 'order'])->name('admintraffic.order');
+    Route::get('/order/admintraffic/{order}/updateStatusSent', [AdmintrafficController::class, 'updateStatusSent'])->name('order.updateStatusSent');
+    Route::get('/order/admintraffic/{order}/updateStatusPaid', [AdmintrafficController::class, 'updateStatusPaid'])->name('order.updateStatusPaid');
+    Route::get('/order/admintraffic/{order}/updateStatusPod', [AdmintrafficController::class, 'updateStatusPod'])->name('order.updateStatusPod');
+    Route::get('/order/admintraffic/{order}/updateStatusDel', [AdmintrafficController::class, 'updateStatusDel'])->name('order.updateStatusDel');
+    Route::get('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessage'])->name('admintraffic.message');
+    Route::post('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessageStore'])->name('admintraffic.messageStore');
 });
 
 Route::middleware(['auth', 'Kurir'])->group(function () {

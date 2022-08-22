@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class Kurir
+class Kasir
 {
     /**
      * Handle an incoming request.
@@ -21,11 +21,8 @@ class Kurir
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 'Kurir') {
+        if (Auth::user()->role == 'Kasir') {
             return $next($request);
         }
-
-        return redirect()->back();
-
     }
 }

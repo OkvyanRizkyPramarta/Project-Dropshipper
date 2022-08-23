@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\User;
+use App\Models\Informations;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -31,6 +32,12 @@ class AccountController extends Controller
     {
         $user = User::findOrFail($id);
         return view('account.detail', compact('user'));
+    }
+
+    public function detailMessage()
+    {
+        $informations = Informations::index();
+        return view('account.detailmessage', compact('informations'));
     }
 
     /**

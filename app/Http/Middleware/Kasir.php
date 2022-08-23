@@ -24,5 +24,7 @@ class Kasir
         if (Auth::user()->role == 'Kasir') {
             return $next($request);
         }
+
+        return redirect()->back();
     }
 }

@@ -25,6 +25,6 @@ class Admintraffic
             return $next($request);
         }
 
-        return redirect()->route('warning.index');
+        return redirect()->back();
     }
 }

@@ -24,5 +24,7 @@ class Admin2
         if (Auth::user()->role == 'Admin2') {
             return $next($request);
         }
+
+        return redirect()->back();
     }
 }

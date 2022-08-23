@@ -36,21 +36,19 @@
 							        <table class="table app-table-hover mb-0 text-center">
 										<thead>
 											<tr>
-												<th class="cell" width="28%" style="text-align:justify;">Username</th>
-												<th class="cell" width="30%" style="text-align:justify;">Name</th>
-												<th class="cell" width="25%" style="text-align:justify;">Role</th>
-												<th class="cell" width="25%" style="text-align:justify;"></th>
+												<th class="cell" width="20%" style="text-align:justify;">Username</th>
+												<th class="cell" width="50%" style="text-align:justify;">description</th>
+												<th class="cell" width="30%" style="text-align:center;"></th>
 											</tr>
 										</thead>
 										<tbody>
-										@foreach($user as $u)
+										@foreach($informations as $i)
 											<tr>
-												<td class="cell" width="28%" style="text-align:justify;">{{ $u->username }}</td>
-												<td class="cell" width="30%" style="text-align:justify;">{{ $u->name }}</td>
-												<td class="cell" width="25%" style="text-align:justify;">{{ $u->role }}</td>
-												<td class="cell" width="25%" style="text-align:justify;">
-													<a class="btn-sm app-btn-secondary" href="{{ route('account.detailUser', $u->id) }}">
-														View
+												<td class="cell" width="20%" style="text-align:justify;">{{ $i->username }}</td>
+												<td class="cell" width="50%" style="text-align:justify;">{{ $i->description }}</td>
+												<td class="cell" width="30%" style="text-align:center;">
+													<a class="btn-sm app-btn-secondary" href="#">
+														Delete
 													</a>
 												</td>
 											</tr>

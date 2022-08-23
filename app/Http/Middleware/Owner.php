@@ -25,7 +25,6 @@ class Owner
             return $next($request);
         }
 
-        //return response()->json(['You do not have permission to access for this page.']);
-        return redirect()->route('warning.index');
+        return redirect()->back();
     }
 }

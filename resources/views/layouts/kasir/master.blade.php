@@ -20,9 +20,6 @@
     <link id="theme-style" rel="stylesheet" href="{{ asset('admin/assets/css/portal.css') }}" 
     type="text/css">
 
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head> 
 
 <body class="app">   	
@@ -59,8 +56,8 @@
                                 <b>{{ Auth::user()->name }}</b>
                             </a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-								<li><a class="dropdown-item" href="{{ route('owner.account') }}">Informasi Akun</a></li>
-								<li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+								<li><a class="dropdown-item" href="{{ route('kasir.account') }}">Informasi Akun</a></li>
+								<li><a class="dropdown-item" href="">Pengaturan</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
 									<a class="dropdown-item" href="{{ route('logout') }}"  data-toggle="modal" data-target="#logoutModal"
@@ -83,7 +80,7 @@
 	        <div class="sidepanel-inner d-flex flex-column">
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 		        <div class="app-branding">
-		            <a class="app-logo" href="{{ route('dashboard.index') }}">
+		            <a class="app-logo" href="{{ route('dashboardkasir.index') }}">
                         <img class="logo-icon me-2" src="{{ asset('admin/assets/images/app-logo.svg') }}" alt="logo">
                         <span class="logo-text">DROPSHIPPER</span>
                     </a>
@@ -91,7 +88,7 @@
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
 					    <li class="nav-item">
-					        <a class="nav-link active" href="{{ route('dashboard.index') }}">
+					        <a class="nav-link active" href="{{ route('dashboardkasir.index') }}">
 						        <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" 
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -103,19 +100,7 @@
 					        </a>
 					    </li>
 					    <li class="nav-item">
-					        <a class="nav-link" href="{{ route('document.index') }}">
-						        <span class="nav-icon">
-						            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" 
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
-                                        <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
-                                    </svg>
-						         </span>
-		                         <span class="nav-link-text">Dokumen</span>
-					        </a>
-					    </li>
-					    <li class="nav-item">
-					        <a class="nav-link" href="{{ route('order.index') }}">
+					        <a class="nav-link" href="{{ route('kasir.order') }}">
 						        <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" 
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -147,9 +132,11 @@
 					        </a>
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="{{ route('register.index') }}">Registrasi Akun</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="{{ route('account.user') }}">Akun Terdaftar</a></li>
-									<li class="submenu-item"><a class="submenu-link" href="{{ route('user.detailMessage') }}">Informasi Laporan</a></li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="{{ route('kasir.message') }}">
+											Halaman Lapor
+										</a>
+									</li>
 						        </ul>
 					        </div>
 					    </li>

@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourierController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\AdmintrafficController;
+use App\Http\Controllers\KasirController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,8 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('owner.account');
     Route::resource('/register', UserController::class);
     Route::get('/user',[AccountController::class, 'user'])->name('account.user');
-    Route::get('/user/{id}', [AccountController::class, 'detailUser'])->name('account.detailUser');;
+    Route::get('/user/{id}', [AccountController::class, 'detailUser'])->name('account.detailUser');
+    Route::get('/detailmessage',[AccountController::class, 'detailMessage'])->name('user.detailMessage');
 });
 
 Route::middleware(['auth', 'Admintraffic'])->group(function () {
@@ -58,6 +60,16 @@ Route::middleware(['auth', 'Admintraffic'])->group(function () {
     Route::get('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessage'])->name('admintraffic.message');
     Route::post('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessageStore'])->name('admintraffic.messageStore');
 });
+
+Route::middleware(['auth', 'Kasir'])->group(function () {
+    Route::get('/warning', [DashboardController::class, 'warning'])->name('warning.index');
+    Route::get('/dashboard/kasir', [KasirController::class, 'dashboard'])->name('dashboardkasir.index');
+    Route::get('/account/kasir', [KasirController::class, 'account'])->name('kasir.account');
+    Route::get('/order/kasir', [KasirController::class, 'order'])->name('kasir.order');
+    Route::get('/message/kasir', [KasirController::class, 'kasirMessage'])->name('kasir.message');
+    Route::post('/message/kasir', [KasirController::class, 'kasirMessageStore'])->name('kasir.messageStore');
+});
+
 
 Route::middleware(['auth', 'Kurir'])->group(function () {
     Route::get('/warning', [DashboardController::class, 'warning'])->name('warning.index');

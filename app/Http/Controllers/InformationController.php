@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Information;
+use App\Models\Informations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InformationController extends Controller
 {
@@ -14,7 +16,8 @@ class InformationController extends Controller
      */
     public function index()
     {
-        //
+        $informations = Informations::index();
+        return view('account.detailmessage', compact('informations'));
     }
 
     /**
@@ -25,32 +28,6 @@ class InformationController extends Controller
     public function create()
     {
         //
-    }
-
-    public function courierMessage()
-    {
-        return view('courier.message');
-    }
-
-    public function courierMessageStore(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'description' => 'required',
-        ]);
-            
-        Information::create([
-            'name' => $request->username,
-            'description' => $request->description,
-        ]);
-
-        if ($validator->fails()) {
-            Alert::toast($validator->messages()->all()[0], 'error');
-            return redirect()->back()->withInput();
-        }
-
-        Alert::toast('Data baru berhasil dibuat.', 'success');
-        return redirect()->route('courier.message');
     }
 
     /**
@@ -104,8 +81,11 @@ class InformationController extends Controller
      * @param  \App\Models\Information  $information
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Information $information)
+    public function destroy(Informations $informations, Request $request)
     {
-        //
+        $informations->delete();
+
+        Alert::toast('Data berhasil dihapus.', 'success');
+        return redirect()->back();
     }
 }

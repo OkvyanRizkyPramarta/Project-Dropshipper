@@ -8,7 +8,7 @@
 			    
 			    <div class="row g-3 mb-4 align-items-center justify-content-between">
 				    <div class="col-auto">
-			            <h1 class="app-page-title mb-0">Halaman User</h1>
+			            <h1 class="app-page-title mb-0">Halaman Informarsi Lapor</h1>
 				    </div>
 				    <div class="col-auto">
 					     <div class="page-utilities">
@@ -47,9 +47,13 @@
 												<td class="cell" width="20%" style="text-align:justify;">{{ $i->username }}</td>
 												<td class="cell" width="50%" style="text-align:justify;">{{ $i->description }}</td>
 												<td class="cell" width="30%" style="text-align:center;">
-													<a class="btn-sm app-btn-secondary" href="#">
-														Delete
-													</a>
+												<form action="{{ route('user.destroy', $i->id) }}" method="POST" class="d-inline">
+												@csrf
+												@method('DELETE')
+													<button type="submit" class="btn-sm app-btn-secondary">
+														<i class="fa fa-trash"></i>
+														Delete</a>
+												</form>
 												</td>
 											</tr>
 										@endforeach

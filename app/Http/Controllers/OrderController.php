@@ -70,9 +70,23 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusSentPending(Order $order)
+    {
+        Order::updateStatusSentPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusPaid(Order $order)
     {
         Order::updateStatusPaid($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusPaidPending(Order $order)
+    {
+        Order::updateStatusPaidPending($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('order.index');
     }
@@ -84,9 +98,23 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusPodPending(Order $order)
+    {
+        Order::updateStatusPodPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusDel(Order $order)
     {
         Order::updateStatusDel($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusDelUndelivery(Order $order)
+    {
+        Order::updateStatusDelUndelivery($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('order.index');
     }

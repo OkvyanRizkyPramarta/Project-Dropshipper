@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\Order;
 use App\Models\Admintraffic;
 use App\Models\Informations;
+use App\Models\Order;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+use App\Imports\ImportData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -28,28 +31,59 @@ class AdmintrafficController extends Controller
         return view('admintraffic.order', compact('order'));
     }
 
-    public function updateStatusSent(Order $order)
+    public function importAdmintraffic(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+    
+        // menangkap file excel
+        $file = $request->file('file');
+    
+        // membuat nama file unik
+        $nama_file = $file->hashName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        // import data
+        $import = Excel::import(new ImportData(), storage_path('app/public/excel/'.$nama_file));
+
+        //remove from server
+        Storage::delete($path);
+
+        if($import) {
+            //redirect
+            return redirect()->route('admintraffic.order')->with(['success' => 'Data Berhasil Diimport!']);
+        } else {
+            //redirect
+            return redirect()->route('admintraffic.order')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
+    public function updateStatusSentAdmintraffic(Order $order)
     {
         Order::updateStatusSent($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('admintraffic.order');
     }
 
-    public function updateStatusPaid(Order $order)
+    public function updateStatusPaidAdmintraffic(Order $order)
     {
         Order::updateStatusPaid($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('admintraffic.order');
     }
 
-    public function updateStatusPod(Order $order)
+    public function updateStatusPodAdmintraffic(Order $order)
     {
         Order::updateStatusPod($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('admintraffic.order');
     }
 
-    public function updateStatusDel(Order $order)
+    public function updateStatusDelAdmintraffic(Order $order)
     {
         Order::updateStatusDel($order);
         Alert::toast('Status berhasil diperbarui.', 'success');

@@ -23,12 +23,11 @@ class CreateUsersTable extends Migration
             $table->enum('role', 
             [
             'Owner',
-            'Outbound',
-            'Inbound',
+            'OutboundInbound',
             'Admintraffic',
             'Kasir',
             'Kurir',
-            'Admin 2',
+            'Admin2',
             ]);
             $table->string('id_card_number', 16);
             $table->string('phone_number', 15);

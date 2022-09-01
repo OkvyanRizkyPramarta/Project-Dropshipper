@@ -56,7 +56,7 @@
                                 <b>{{ Auth::user()->name }}</b>
                             </a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-								<li><a class="dropdown-item" href="{{ route('courier.account') }}">Informasi Akun</a></li>
+								<li><a class="dropdown-item" href="{{ route('inboundoutbound.account') }}">Informasi Akun</a></li>
 								<li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
@@ -100,7 +100,7 @@
 					        </a>
 					    </li>
 					    <li class="nav-item">
-					        <a class="nav-link" href="{{ route('courier.order') }}">
+					        <a class="nav-link" href="{{ route('inboundoutbound.order') }}">
 						        <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" 
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +132,7 @@
 					        </a>
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link" href="{{ route('courier.message') }}">Halaman Lapor</a></li>
+									<li class="submenu-item"><a class="submenu-link" href="{{ route('inboundoutbound.message') }}">Halaman Lapor</a></li>
 						        </ul>
 					        </div>
 					    </li>

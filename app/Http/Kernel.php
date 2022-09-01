@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'Owner' => \App\Http\Middleware\Owner::class,
+        'InboundOutbound' => \App\Http\Middleware\InboundOutbound::class,
         'Admintraffic' => \App\Http\Middleware\Admintraffic::class,
         'Kasir' => \App\Http\Middleware\Kasir::class,
         'Kurir' => \App\Http\Middleware\Kurir::class,

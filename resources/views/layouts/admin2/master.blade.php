@@ -56,8 +56,8 @@
                                 <b>{{ Auth::user()->name }}</b>
                             </a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-								<li><a class="dropdown-item" href="{{ route('courier.account') }}">Informasi Akun</a></li>
-								<li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+								<li><a class="dropdown-item" href="{{ route('admin2.account') }}">Informasi Akun</a></li>
+								<li><a class="dropdown-item" href="">Pengaturan</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
 									<a class="dropdown-item" href="{{ route('logout') }}"  data-toggle="modal" data-target="#logoutModal"
@@ -80,7 +80,7 @@
 	        <div class="sidepanel-inner d-flex flex-column">
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 		        <div class="app-branding">
-		            <a class="app-logo" href="{{ route('dashboardkurir.index') }}">
+		            <a class="app-logo" href="{{ route('dashboardadmin2.index') }}">
                         <img class="logo-icon me-2" src="{{ asset('admin/assets/images/app-logo.svg') }}" alt="logo">
                         <span class="logo-text">DROPSHIPPER</span>
                     </a>
@@ -88,7 +88,7 @@
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
 					    <li class="nav-item">
-					        <a class="nav-link active" href="{{ route('dashboardkurir.index') }}">
+					        <a class="nav-link active" href="{{ route('dashboardadmin2.index') }}">
 						        <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" 
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +100,7 @@
 					        </a>
 					    </li>
 					    <li class="nav-item">
-					        <a class="nav-link" href="{{ route('courier.order') }}">
+					        <a class="nav-link" href="{{ route('admin2.order') }}">
 						        <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" 
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +132,11 @@
 					        </a>
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-									<li class="submenu-item"><a class="submenu-link" href="{{ route('courier.message') }}">Halaman Lapor</a></li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="{{ route('admin2.message') }}">
+											Halaman Lapor
+										</a>
+									</li>
 						        </ul>
 					        </div>
 					    </li>

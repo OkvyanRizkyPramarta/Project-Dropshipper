@@ -4,42 +4,42 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Order;
-use App\Models\Kasir;
 use App\Models\Informations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
-class KasirController extends Controller
+
+class InboundOutboundController extends Controller
 {
     public function dashboard()
     {
-        return view('kasir.dashboard');
+        return view('inboundoutbound.dashboard');
     }
 
     public function account()
     {
-        return view('kasir.account');
+        return view('inboundoutbound.account');
     }
 
     public function order()
     {
         $order = Order::all();
-        return view('kasir.order', compact('order'));
+        return view('inboundoutbound.order', compact('order'));
     }
 
-    public function updateStatusTransactionKasir(Order $order)
+    public function updateStatusCheckingInboundOutbound(Order $order)
     {
-        Order::updateStatusTransaction($order);
+        Order::updateStatusChecking($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('kasir.order');
+        return redirect()->route('inboundoutbound.order');
     }
 
-    public function kasirMessage()
+    public function inboundoutboundMessage()
     {
-        return view('kasir.message');
+        return view('inboundoutbound.message');
     }
 
-    public function kasirMessageStore(Request $request)
+    public function inboundoutboundMessageStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -57,7 +57,7 @@ class KasirController extends Controller
         }
 
         Alert::toast('Data baru berhasil dibuat.', 'success');
-        return redirect()->route('courier.message');
+        return redirect()->route('inbundoutbound.message');
     }
 
     /**
@@ -94,10 +94,10 @@ class KasirController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kasir  $kasir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Kasir $kasir)
+    public function show($id)
     {
         //
     }
@@ -105,10 +105,10 @@ class KasirController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kasir  $kasir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kasir $kasir)
+    public function edit($id)
     {
         //
     }
@@ -117,10 +117,10 @@ class KasirController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kasir  $kasir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kasir $kasir)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -128,10 +128,10 @@ class KasirController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kasir  $kasir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kasir $kasir)
+    public function destroy($id)
     {
         //
     }

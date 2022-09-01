@@ -164,9 +164,10 @@ class AdmintrafficController extends Controller
      * @param  \App\Models\Admintraffic  $admintraffic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admintraffic $admintraffic)
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('admintraffic.editorder', compact('order'));
     }
 
     /**
@@ -176,9 +177,24 @@ class AdmintrafficController extends Controller
      * @param  \App\Models\Admintraffic  $admintraffic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admintraffic $admintraffic)
+    public function update(Request $request, Order $order)
     {
-        //
+        $order = Order::findOrFail($order->id);
+
+        $order->update([
+            'order_date'        => $request->order_date,
+            'username'          => $request->username,
+            'order_id'          => $request->order_id,
+            'customer_address'  => $request->customer_address,
+            'customer_phone'    => $request->customer_phone,
+            'user_kelurahan'    => $request->user_kelurahan,
+            'user_kecamatan'    => $request->user_kecamatan,
+            'cod_ammount'       => $request->cod_ammount,
+            'keterangan'        => $request->keterangan,
+        ]);
+
+        Alert::toast('Data berhasil diedit.', 'success');
+        return redirect()->route('admintraffic.order');
     }
 
     /**

@@ -35,7 +35,8 @@
 				</nav>
 				
 				<div class="tab-content" id="orders-table-tab-content">
-					<form action="#">
+					<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+					@csrf
 			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
@@ -54,6 +55,7 @@
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
+												<th class="cell">Status Transaksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -110,6 +112,17 @@
 													</span>
 												</td>
 												<td class="cell">{{ $o->keterangan}}</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_transaction == 'unfinished')
+														<a href="{{ route('order.updateStatusTransactionKasir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>UNFINISHED</span>
+														@else
+														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>FINISHED</span>
+														@endif
+													</span>
+												</td>
 											</tr>
 										@endforeach
 										</tbody>

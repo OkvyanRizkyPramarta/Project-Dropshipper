@@ -36,8 +36,8 @@
 							        <table class="table app-table-hover mb-0 text-center">
 										<thead>
 											<tr>
-												<th class="cell" width="28%" style="text-align:justify;">Username</th>
-												<th class="cell" width="30%" style="text-align:justify;">Name</th>
+												<th class="cell" width="25%" style="text-align:justify;">Username</th>
+												<th class="cell" width="25%" style="text-align:justify;">Name</th>
 												<th class="cell" width="25%" style="text-align:justify;">Role</th>
 												<th class="cell" width="25%" style="text-align:justify;"></th>
 											</tr>
@@ -45,14 +45,25 @@
 										<tbody>
 										@foreach($user as $u)
 											<tr>
-												<td class="cell" width="28%" style="text-align:justify;">{{ $u->username }}</td>
-												<td class="cell" width="30%" style="text-align:justify;">{{ $u->name }}</td>
+												<td class="cell" width="25%" style="text-align:justify;">{{ $u->username }}</td>
+												<td class="cell" width="25%" style="text-align:justify;">{{ $u->name }}</td>
 												<td class="cell" width="25%" style="text-align:justify;">{{ $u->role }}</td>
 												<td class="cell" width="25%" style="text-align:justify;">
 													<a class="btn-sm app-btn-secondary" href="{{ route('account.detailUser', $u->id) }}">
 														View
-													</a>
+													</a>&nbsp;
+													<a class="btn-sm app-btn-secondary" href="#">
+														Edit
+													</a>&nbsp;
+													<form action="" method="POST" class="d-inline">
+													@csrf
+													@method('DELETE')
+														<button type="submit" class="btn-sm app-btn-secondary">
+															<i class="fa fa-trash"></i>
+															Delete</a>
+													</form>
 												</td>
+												
 											</tr>
 										@endforeach
 										</tbody>

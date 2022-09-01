@@ -63,12 +63,11 @@
 								<select class="form-select" name="role" >
 									<option selected value="" disabled selected>Select your option</option>
                                     <option value="1">Owner</option>
-									<option value="2">Outbound</option>
-									<option value="3">Inbound</option>
-									<option value="4">Admintraffic</option>  
-                                    <option value="5">Kasir</option>
-                                    <option value="6">Kurir</option>  
-                                    <option value="7">Admin 2</option>  
+									<option value="2">Inbound Outbound</option>
+									<option value="3">Admintraffic</option>  
+                                    <option value="4">Kasir</option>
+                                    <option value="5">Kurir</option>  
+                                    <option value="6">Admin 2</option>  
 								</select>
 							</div>
                             <div class="email mb-3">

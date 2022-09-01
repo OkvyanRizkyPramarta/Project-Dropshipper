@@ -29,28 +29,28 @@ class CourierController extends Controller
         return view('courier.order', compact('order'));
     }
 
-    public function updateStatusSent(Order $order)
+    public function updateStatusSentKurir(Order $order)
     {
         Order::updateStatusSent($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('courier.order');
     }
 
-    public function updateStatusPaid(Order $order)
+    public function updateStatusPaidKurir(Order $order)
     {
         Order::updateStatusPaid($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('courier.order');
     }
 
-    public function updateStatusPod(Order $order)
+    public function updateStatusPodKurir(Order $order)
     {
         Order::updateStatusPod($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('courier.order');
     }
 
-    public function updateStatusDel(Order $order)
+    public function updateStatusDelKurir(Order $order)
     {
         Order::updateStatusDel($order);
         Alert::toast('Status berhasil diperbarui.', 'success');

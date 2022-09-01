@@ -46,6 +46,10 @@ class LoginController extends Controller
                 $this->redirectTo = '/dashboard';
                 return $this->redirectTo;
                 break;
+            case 'InboundOutbound':
+                $this->redirectTo = '/dashboard/inboundoutbound';
+                return $this->redirectTo;
+                break;
             case 'Admintraffic':
                 $this->redirectTo = '/dashboard/admintraffic';
                 return $this->redirectTo;
@@ -56,6 +60,10 @@ class LoginController extends Controller
                 break;
             case 'Kurir':
                 $this->redirectTo = '/dashboard/kurir';
+                return $this->redirectTo;
+                break;
+            case 'Admin2':
+                $this->redirectTo = '/dashboard/admin2';
                 return $this->redirectTo;
                 break;
             default:

@@ -69,7 +69,7 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_sending == 'pending')
-														<a href="{{ route('order.updateStatusSent', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusSentKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
 														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
@@ -80,7 +80,7 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_cod_ammount == 'pending')
-														<a href="{{ route('order.updateStatusPaid', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPaidKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
 														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
@@ -91,7 +91,7 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_pod == 'pending')
-														<a href="{{ route('order.updateStatusPod', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPodKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
 														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
@@ -102,7 +102,7 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_order == 'undelivered' && '$o->status_pod == pod && $o->status_paid == paid ')
-														<a href="{{ route('order.updateStatusDel', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusDelKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>UNDELIVERED</span>
 														@else
 														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">

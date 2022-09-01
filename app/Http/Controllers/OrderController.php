@@ -17,6 +17,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $order = Order::all();
@@ -61,6 +62,20 @@ class OrderController extends Controller
 
     public function importView(Request $request){
         return view('importFile');
+    }
+
+    public function updateStatusChecking(Order $order)
+    {
+        Order::updateStatusChecking($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusCheckingPending(Order $order)
+    {
+        Order::updateStatusCheckingPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusSent(Order $order)
@@ -119,6 +134,34 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusTransaction(Order $order)
+    {
+        Order::updateStatusTransaction($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusTransactionUnfinished(Order $order)
+    {
+        Order::updateStatusTransactionUnfinished($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusReceived(Order $order)
+    {
+        Order::updateStatusReceived($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusReceivedPending(Order $order)
+    {
+        Order::updateStatusReceivedPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
     /*public function import(Request $request){
         Excel::import(new ImportData, $request->file('file')->store('files'));
         return redirect()->back();
@@ -156,9 +199,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return view('order.edit', compact('order'));
     }
 
     /**
@@ -170,7 +214,22 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order = Order::findOrFail($order->id);
+
+        $order->update([
+            'order_date'        => $request->order_date,
+            'username'          => $request->username,
+            'order_id'          => $request->order_id,
+            'customer_address'  => $request->customer_address,
+            'customer_phone'    => $request->customer_phone,
+            'user_kelurahan'    => $request->user_kelurahan,
+            'user_kecamatan'    => $request->user_kecamatan,
+            'cod_ammount'       => $request->cod_ammount,
+            'keterangan'        => $request->keterangan,
+        ]);
+
+        Alert::toast('Data berhasil diedit.', 'success');
+        return redirect()->route('order.index');
     }
 
     /**
@@ -179,8 +238,14 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        
+        $order = Order::find($id);
+        $order->delete();
+
+        Alert::toast('Data berhasil dihapus.', 'success');
+        return redirect()->route('order.index');
     }
+    
 }

@@ -52,10 +52,10 @@
 													<a class="btn-sm app-btn-secondary" href="{{ route('account.detailUser', $u->id) }}">
 														View
 													</a>&nbsp;
-													<a class="btn-sm app-btn-secondary" href="#">
+													<a class="btn-sm app-btn-secondary" href="{{ route('account.edit', $u->id) }}">
 														Edit
 													</a>&nbsp;
-													<form action="" method="POST" class="d-inline">
+													<form action="{{ route('account.destroy', $u->id) }}" method="POST" class="d-inline">
 													@csrf
 													@method('DELETE')
 														<button type="submit" class="btn-sm app-btn-secondary">

@@ -44,17 +44,20 @@
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell">OrderDate</th>
+											<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
 												<th class="cell">Username</th>
 												<th class="cell">Customer Address</th>
 												<th class="cell">Customer Phone</th>
 												<th class="cell">COD Mount</th>
+												<th class="cell">Product Checking</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
+												<th class="cell">Status Transaction</th>
+												<th class="cell">Product Received</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -66,6 +69,17 @@
 												<td class="cell">{{ $o->customer_address }}</td>
 												<td class="cell">{{ $o->customer_phone }}</td>
 												<td class="cell">{{ $o->cod_ammount }}</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->product_checking == 'pending')
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>DONE</span>
+														@endif
+													</span>
+												</td>
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_sending == 'pending')
@@ -111,6 +125,28 @@
 													</span>
 												</td>
 												<td class="cell">{{ $o->keterangan}}</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_transaction == 'unfinished')
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>UNFINISHED</span>
+														@else
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>FINISHED</span>
+														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->product_received == 'pending')
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>RECEIVED</span>
+														@endif
+													</span>
+												</td>
 											</tr>
 										@endforeach
 										</tbody>

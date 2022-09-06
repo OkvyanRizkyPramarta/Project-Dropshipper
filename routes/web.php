@@ -60,6 +60,9 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::resource('/register', UserController::class);
     Route::get('/user',[AccountController::class, 'user'])->name('account.user');
     Route::get('/user/{id}', [AccountController::class, 'detailUser'])->name('account.detailUser');
+    Route::get('/user/edit/{user}', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/user/{user}',[AccountController::class,'update'])->name('account.update');
+    Route::delete('/user/{account}',[AccountController::class, 'destroy'])->name('account.destroy');
     Route::get('/detailmessage',[AccountController::class, 'detailMessage'])->name('user.detailMessage');
     Route::delete('/detailmessage/{informations}',[InformationController::class, 'destroy'])->name('user.destroy');
 });
@@ -68,6 +71,8 @@ Route::middleware(['auth', 'InboundOutbound'])->group(function () {
     Route::get('/warning', [DashboardboundController::class, 'warning'])->name('warning.index');
     Route::get('/dashboard/inboundoutbound', [InboundOutboundController::class, 'dashboard'])->name('dashboardinboundoutbound.index');
     Route::get('/account/inboundoutbound', [InboundOutboundController::class, 'account'])->name('inboundoutbound.account');
+    //Route::get('/account/inboundoutbound/edit/{user}', [InboundOutboundController::class, 'edit'])->name('inboundoutboundaccount.edit');
+    //Route::put('/account/inboundoutbound/{user}',[InboundOutboundController::class,'update'])->name('inboundoutboundaccount.update');
     Route::get('/order/inboundoutbound', [InboundOutboundController::class, 'order'])->name('inboundoutbound.order');
     Route::get('/order/inboundoutbound/{order}/updateStatusCheckingInboundOutbound', [InboundOutboundController::class, 'updateStatusCheckingInboundOutbound'])->name('order.updateStatusCheckingInboundOutbound');
     Route::get('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessage'])->name('inboundoutbound.message');

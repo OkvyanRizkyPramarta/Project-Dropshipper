@@ -57,6 +57,7 @@
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
 												<th class="cell">Status Transaksi</th>
+												<th class="cell">Product Received</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -132,6 +133,17 @@
 														@else
 														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>FINISHED</span>
+														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->product_received == 'pending')
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>RECEIVED</span>
 														@endif
 													</span>
 												</td>

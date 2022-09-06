@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Informations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 
 class InboundOutboundController extends Controller
 {
@@ -16,9 +18,9 @@ class InboundOutboundController extends Controller
         return view('inboundoutbound.dashboard');
     }
 
-    public function account()
+    public function account(User $user)
     {
-        return view('inboundoutbound.account');
+        return view('inboundoutbound.account', compact('user'));
     }
 
     public function order()
@@ -110,7 +112,8 @@ class InboundOutboundController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('inboundoutbound.edituser', compact('user'));
     }
 
     /**
@@ -120,9 +123,23 @@ class InboundOutboundController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user = User::findOrFail($user->id);
+
+        $user->update([
+            'name'        => $request->name,
+            'username'          => $request->username,
+            'email'          => $request->email,
+            'password' => Hash::make($request->password),
+            'role'    => $request->role,
+            'id_card_number'    => $request->id_card_number,
+            'phone_number'    => $request->phone_number,
+            'whatsapp_number'       => $request->whatsapp_number,
+        ]);
+
+        Alert::toast('Data berhasil diedit.', 'success');
+        return redirect()->back();
     }
 
     /**

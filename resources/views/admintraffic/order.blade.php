@@ -82,10 +82,10 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->product_checking == 'pending')
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusCheckingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusCheckingPendingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>DONE</span>
 														@endif
 													</span>
@@ -96,7 +96,7 @@
 														<a href="{{ route('order.updateStatusSentAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusSentPendingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>SENT</span>
 														@endif
 													</span>
@@ -107,7 +107,7 @@
 														<a href="{{ route('order.updateStatusPaidAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPaidPendingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
 													</span>
@@ -118,7 +118,7 @@
 														<a href="{{ route('order.updateStatusPodAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPodPendingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>POD</span>
 														@endif
 													</span>
@@ -129,7 +129,7 @@
 														<a href="{{ route('order.updateStatusDelAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>UNDELIVERED</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusDelUndeliveryAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>DELIVERED</span>
 														@endif
 													</span>
@@ -138,10 +138,10 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->status_transaction == 'unfinished')
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusTransactionAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>UNFINISHED</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusTransactionUnfinishedAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>FINISHED</span>
 														@endif
 													</span>
@@ -149,10 +149,10 @@
 												<td class="cell">
 													<span class="badge bg-success">
 														@if ($o->product_received == 'pending')
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusReceivedAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusReceivedPendingAdmintraffic', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>RECEIVED</span>
 														@endif
 													</span>

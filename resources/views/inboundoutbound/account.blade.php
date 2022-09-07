@@ -90,9 +90,6 @@
 								    </div>
 							    </div>
 						    </div>
-						    <div class="app-card-footer p-4 mt-auto">
-							   <a class="btn app-btn-secondary" href="">Manage Profile</a>
-						    </div>
 						</div>
 	                </div>
                 </div>

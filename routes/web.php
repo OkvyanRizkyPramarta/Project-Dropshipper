@@ -32,8 +32,6 @@ Auth::routes([
     'register' => false,
 ]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
@@ -71,8 +69,6 @@ Route::middleware(['auth', 'InboundOutbound'])->group(function () {
     Route::get('/warning', [DashboardboundController::class, 'warning'])->name('warning.index');
     Route::get('/dashboard/inboundoutbound', [InboundOutboundController::class, 'dashboard'])->name('dashboardinboundoutbound.index');
     Route::get('/account/inboundoutbound', [InboundOutboundController::class, 'account'])->name('inboundoutbound.account');
-    //Route::get('/account/inboundoutbound/edit/{user}', [InboundOutboundController::class, 'edit'])->name('inboundoutboundaccount.edit');
-    //Route::put('/account/inboundoutbound/{user}',[InboundOutboundController::class,'update'])->name('inboundoutboundaccount.update');
     Route::get('/order/inboundoutbound', [InboundOutboundController::class, 'order'])->name('inboundoutbound.order');
     Route::get('/order/inboundoutbound/{order}/updateStatusCheckingInboundOutbound', [InboundOutboundController::class, 'updateStatusCheckingInboundOutbound'])->name('order.updateStatusCheckingInboundOutbound');
     Route::get('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessage'])->name('inboundoutbound.message');
@@ -85,14 +81,29 @@ Route::middleware(['auth', 'Admintraffic'])->group(function () {
     Route::get('/account/admintraffic', [AdmintrafficController::class, 'account'])->name('admintraffic.account');
     Route::get('/order/admintraffic', [AdmintrafficController::class, 'order'])->name('admintraffic.order');
     Route::post('/order/admintraffic',[AdmintrafficController::class,'importAdmintraffic'])->name('importAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusCheckingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingAdmintraffic'])->name('order.updateStatusCheckingAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusCheckingPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingPendingAdmintraffic'])->name('order.updateStatusCheckingPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusSentAdmintraffic', [AdmintrafficController::class, 'updateStatusSentAdmintraffic'])->name('order.updateStatusSentAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusSentPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusSentPendingAdmintraffic'])->name('order.updateStatusSentPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusPaidAdmintraffic', [AdmintrafficController::class, 'updateStatusPaidAdmintraffic'])->name('order.updateStatusPaidAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusPaidPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusPaidPendingAdmintraffic'])->name('order.updateStatusPaidPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusPodAdmintraffic', [AdmintrafficController::class, 'updateStatusPodAdmintraffic'])->name('order.updateStatusPodAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusPodPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusPodPendingAdmintraffic'])->name('order.updateStatusPodPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusDelAdmintraffic', [AdmintrafficController::class, 'updateStatusDelAdmintraffic'])->name('order.updateStatusDelAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusDelUndeliveryAdmintraffic', [AdmintrafficController::class, 'updateStatusDelUndeliveryAdmintraffic'])->name('order.updateStatusDelUndeliveryAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusTransactionAdmintraffic', [AdmintrafficController::class, 'updateStatusTransactionAdmintraffic'])->name('order.updateStatusTransactionAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusTransactionUnfinishedAdmintraffic', [AdmintrafficController::class, 'updateStatusTransactionUnfinishedAdmintraffic'])->name('order.updateStatusTransactionUnfinishedAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusReceivedAdmintraffic', [AdmintrafficController::class, 'updateStatusReceivedAdmintraffic'])->name('order.updateStatusReceivedAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusReceivedPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusReceivedPendingAdmintraffic'])->name('order.updateStatusReceivedPendingAdmintraffic');
     Route::get('/order/edit/admintraffic/{order}', [AdmintrafficController::class, 'edit'])->name('admintraffic.edit');
     Route::put('/order/admintraffic/{order}',[AdmintrafficController::class,'update'])->name('admintraffic.update');
+    Route::get('/admintraffic/user',[AdmintrafficController::class, 'userAdmintraffic'])->name('admintraffic.userAdmintraffic');
+    Route::get('/admintraffic/user/{id}', [AdmintrafficController::class, 'detailUserAdmintraffic'])->name('admintraffic.detailUserAdmintraffic');
+    Route::get('/admintraffic/edit/user/{user}', [AdmintrafficController::class, 'editUserAdmintraffic'])->name('admintraffic.editUserAdmintraffic');
+    Route::put('/admintraffic/user/{user}',[AdmintrafficController::class,'updateUserAdmintraffic'])->name('admintraffic.updateUserAdmintraffic');
     Route::get('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessage'])->name('admintraffic.message');
     Route::post('/message/admintraffic', [AdmintrafficController::class, 'admintrafficMessageStore'])->name('admintraffic.messageStore');
+    Route::get('/message/detail/admintraffic',[AdmintrafficController::class, 'messageDetailAdmintraffic'])->name('admintraffic.messageDetailAdmintraffic');
 });
 
 Route::middleware(['auth', 'Kasir'])->group(function () {

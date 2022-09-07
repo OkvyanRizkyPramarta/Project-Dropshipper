@@ -137,6 +137,16 @@
 											Halaman Lapor
 										</a>
 									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="{{ route('admintraffic.userAdmintraffic') }}">
+											Akun Terdaftar
+										</a>
+									</li>
+									<li class="submenu-item">
+										<a class="submenu-link" href="{{ route('admintraffic.messageDetailAdmintraffic') }}">
+											Informasi Laporan
+										</a>
+									</li>
 						        </ul>
 					        </div>
 					    </li>

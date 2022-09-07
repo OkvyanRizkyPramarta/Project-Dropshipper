@@ -1,6 +1,6 @@
 @extends('layouts.admintraffic.master')
 
-@section('title', '- Account')
+@section('title', '- Detail Profil')
 
 @section('content')
         <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -39,7 +39,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Name</strong></div>
-									        <div class="item-data">{{ Auth::user()->name }}</div>
+									        <div class="item-data">{{ $user->name }}</div>
 									    </div>
 								    </div>
 							    </div>
@@ -47,7 +47,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Email</strong></div>
-									        <div class="item-data">{{ Auth::user()->email }}</div>
+									        <div class="item-data">{{ $user->email }}</div>
 									    </div>
 								    </div>
 							    </div>
@@ -55,7 +55,7 @@
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Peran</strong></div>
-									        <div class="item-data">{{ Auth::user()->role }}</div>
+									        <div class="item-data">{{ $user->role }}</div>
 									    </div>
 								    </div>
 							    </div>
@@ -64,7 +64,7 @@
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Nomer KTP</strong></div>
 									        <div class="item-data">
-												{{ Auth::user()->id_card_number}}
+												{{ $user->id_card_number}}
 									        </div>
 									    </div>
 								    </div>
@@ -74,7 +74,7 @@
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Nomer Telepon</strong></div>
 									        <div class="item-data">
-												{{ Auth::user()->phone_number }}
+												{{ $user->phone_number }}
 									        </div>
 									    </div>
 								    </div>
@@ -84,7 +84,7 @@
 									    <div class="col-auto">
 										    <div class="item-label"><strong>Nomer Telepon</strong></div>
 									        <div class="item-data">
-												{{ Auth::user()->whatsapp_number }}
+												{{ $user->whatsapp_number }}
 									        </div>
 									    </div>
 								    </div>

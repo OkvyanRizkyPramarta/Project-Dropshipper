@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Redirect;
 use App\Models\Admintraffic;
 use App\Models\Informations;
 use App\Models\Order;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ImportData;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 
 class AdmintrafficController extends Controller
 {
@@ -62,11 +66,32 @@ class AdmintrafficController extends Controller
         }
     }
 
+    public function updateStatusCheckingAdmintraffic(Order $order)
+    {
+        Order::updateStatusChecking($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusCheckingPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusCheckingPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusSentAdmintraffic(Order $order)
     {
         Order::updateStatusSent($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('admintraffic.order');
+    }
+
+    public function updateStatusSentPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusSentPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusPaidAdmintraffic(Order $order)
@@ -76,6 +101,13 @@ class AdmintrafficController extends Controller
         return redirect()->route('admintraffic.order');
     }
 
+    public function updateStatusPaidPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusPaidPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusPodAdmintraffic(Order $order)
     {
         Order::updateStatusPod($order);
@@ -83,11 +115,53 @@ class AdmintrafficController extends Controller
         return redirect()->route('admintraffic.order');
     }
 
+    public function updateStatusPodPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusPodPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusDelAdmintraffic(Order $order)
     {
         Order::updateStatusDel($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('admintraffic.order');
+    }
+
+    public function updateStatusDelUndeliveryAdmintraffic(Order $order)
+    {
+        Order::updateStatusDelUndelivery($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusTransactionAdmintraffic(Order $order)
+    {
+        Order::updateStatusTransaction($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusTransactionUnfinishedAdmintraffic(Order $order)
+    {
+        Order::updateStatusTransactionUnfinished($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusReceivedAdmintraffic(Order $order)
+    {
+        Order::updateStatusReceived($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
+    }
+
+    public function updateStatusReceivedPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusReceivedPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('kasir.order');
     }
 
     public function admintrafficMessage()
@@ -114,6 +188,49 @@ class AdmintrafficController extends Controller
 
         Alert::toast('Data baru berhasil dibuat.', 'success');
         return redirect()->route('admintraffic.message');
+    }
+
+    public function userAdmintraffic()
+    {
+        $user = User::all();
+        return view('admintraffic.user', compact('user'));
+    }
+
+    public function detailUserAdmintraffic($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admintraffic.detailuser', compact('user'));
+    }
+
+    public function editUserAdmintraffic(User $user)
+    {
+        return view('admintraffic.edituser', compact('user'));
+    }
+
+    public function updateUserAdmintraffic(Request $request, User $user)
+    {
+        $user = User::findOrFail($user->id);
+
+        $user->update([
+            'name'              => $request->name,
+            'username'          => $request->username,
+            'email'             => $request->email,
+            'password'          => Hash::make($request->password),
+            'role'              => $request->role,
+            'id_card_number'    => $request->id_card_number,
+            'phone_number'      => $request->phone_number,
+            'whatsapp_number'   => $request->whatsapp_number,
+        ]);
+
+        Alert::toast('Data berhasil diedit.', 'success');
+        return Redirect::to('/admintraffic/user');
+        //return redirect()->route('admintraffic.user');
+    }
+
+    public function messageDetailAdmintraffic()
+    {
+        $informations = Informations::index();
+        return view('admintraffic.detailmessage', compact('informations'));
     }
 
     /**

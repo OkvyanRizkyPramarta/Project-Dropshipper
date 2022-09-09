@@ -36,6 +36,7 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::post('/order',[OrderController::class,'import'])->name('import');
+    Route::get('/order/export', [OrderController::class, 'export'])->name('export');;
     Route::get('/order/{order}/updateStatusChecking', [OrderController::class, 'updateStatusChecking'])->name('order.updateStatusChecking');
     Route::get('/order/{order}/updateStatusCheckingPending', [OrderController::class, 'updateStatusCheckingPending'])->name('order.updateStatusCheckingPending');
     Route::get('/order/{order}/updateStatusSent', [OrderController::class, 'updateStatusSent'])->name('order.updateStatusSent');

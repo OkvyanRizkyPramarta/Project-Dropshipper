@@ -6,6 +6,7 @@ use App\Models\Order;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ImportData;
+use App\Exports\ExportData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -167,9 +168,9 @@ class OrderController extends Controller
         return redirect()->back();
     }*/
 
-    /*public function exportUsers(Request $request){
-        return Excel::download(new ExportUser, 'users.xlsx');
-    }*/
+    public function export(Request $request){
+        return Excel::download(new ExportData, 'orders.xlsx');
+    }
 
     /**
      * Store a newly created resource in storage.

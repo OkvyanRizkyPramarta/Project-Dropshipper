@@ -34,7 +34,7 @@ Auth::routes([
 
 Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/order', [OrderController::class, 'index', 'indexOrder'])->name('order.index');
     Route::post('/order',[OrderController::class,'import'])->name('import');
     Route::get('/order/export', [OrderController::class, 'export'])->name('export');;
     Route::get('/order/{order}/updateStatusChecking', [OrderController::class, 'updateStatusChecking'])->name('order.updateStatusChecking');
@@ -45,6 +45,9 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/order/{order}/updateStatusPaidPending', [OrderController::class, 'updateStatusPaidPending'])->name('order.updateStatusPaidPending');
     Route::get('/order/{order}/updateStatusPod', [OrderController::class, 'updateStatusPod'])->name('order.updateStatusPod');
     Route::get('/order/{order}/updateStatusPodPending', [OrderController::class, 'updateStatusPodPending'])->name('order.updateStatusPodPending');
+    Route::get('/order/inputImage', [OrderController::class, 'indexImage'])->name('order.indexImage');
+    Route::post('/order/inputImage', [OrderController::class, 'storeImage'])->name('order.storeImage');
+    Route::get('/order/showImage/{order}', [OrderController::class, 'showImage'])->name('order.showImage');
     Route::get('/order/{order}/updateStatusDel', [OrderController::class, 'updateStatusDel'])->name('order.updateStatusDel');
     Route::get('/order/{order}/updateStatusDelUndelivery', [OrderController::class, 'updateStatusDelUndelivery'])->name('order.updateStatusDelUndelivery');
     Route::get('/order/{order}/updateStatusTransaction', [OrderController::class, 'updateStatusTransaction'])->name('order.updateStatusTransaction');
@@ -72,6 +75,7 @@ Route::middleware(['auth', 'InboundOutbound'])->group(function () {
     Route::get('/account/inboundoutbound', [InboundOutboundController::class, 'account'])->name('inboundoutbound.account');
     Route::get('/order/inboundoutbound', [InboundOutboundController::class, 'order'])->name('inboundoutbound.order');
     Route::get('/order/inboundoutbound/{order}/updateStatusCheckingInboundOutbound', [InboundOutboundController::class, 'updateStatusCheckingInboundOutbound'])->name('order.updateStatusCheckingInboundOutbound');
+    Route::get('/order/inboundoutbound/showImage/{order}', [InboundOutboundController::class, 'showImageInboundOutbound'])->name('order.showImageInboundOutbound');
     Route::get('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessage'])->name('inboundoutbound.message');
     Route::post('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessageStore'])->name('inboundoutbound.messageStore');
 });
@@ -82,6 +86,7 @@ Route::middleware(['auth', 'Admintraffic'])->group(function () {
     Route::get('/account/admintraffic', [AdmintrafficController::class, 'account'])->name('admintraffic.account');
     Route::get('/order/admintraffic', [AdmintrafficController::class, 'order'])->name('admintraffic.order');
     Route::post('/order/admintraffic',[AdmintrafficController::class,'importAdmintraffic'])->name('importAdmintraffic');
+    Route::get('/order/admintraffic/export', [AdmintrafficController::class, 'exportAdmintraffic'])->name('exportAdmintraffic');;
     Route::get('/order/admintraffic/{order}/updateStatusCheckingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingAdmintraffic'])->name('order.updateStatusCheckingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusCheckingPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingPendingAdmintraffic'])->name('order.updateStatusCheckingPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusSentAdmintraffic', [AdmintrafficController::class, 'updateStatusSentAdmintraffic'])->name('order.updateStatusSentAdmintraffic');
@@ -90,6 +95,9 @@ Route::middleware(['auth', 'Admintraffic'])->group(function () {
     Route::get('/order/admintraffic/{order}/updateStatusPaidPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusPaidPendingAdmintraffic'])->name('order.updateStatusPaidPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusPodAdmintraffic', [AdmintrafficController::class, 'updateStatusPodAdmintraffic'])->name('order.updateStatusPodAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusPodPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusPodPendingAdmintraffic'])->name('order.updateStatusPodPendingAdmintraffic');
+    Route::get('/order/admintraffic/inputImage', [AdmintrafficController::class, 'indexImageAdmintraffic'])->name('order.indexImageAdmintraffic');
+    Route::post('/order/admintraffic/inputImage', [AdmintrafficController::class, 'storeImageAdmintraffic'])->name('order.storeImageAdmintraffic');
+    Route::get('/order/admintraffic/showImage/{order}', [AdmintrafficController::class, 'showImageAdmintraffic'])->name('order.showImageAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusDelAdmintraffic', [AdmintrafficController::class, 'updateStatusDelAdmintraffic'])->name('order.updateStatusDelAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusDelUndeliveryAdmintraffic', [AdmintrafficController::class, 'updateStatusDelUndeliveryAdmintraffic'])->name('order.updateStatusDelUndeliveryAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusTransactionAdmintraffic', [AdmintrafficController::class, 'updateStatusTransactionAdmintraffic'])->name('order.updateStatusTransactionAdmintraffic');
@@ -124,7 +132,10 @@ Route::middleware(['auth', 'Kurir'])->group(function () {
     Route::get('/order/kurir', [CourierController::class, 'order'])->name('courier.order');
     Route::get('/order/kurir/{order}/updateStatusSentKurir', [CourierController::class, 'updateStatusSentKurir'])->name('order.updateStatusSentKurir');
     Route::get('/order/kurir/{order}/updateStatusPaidKurir', [CourierController::class, 'updateStatusPaidKurir'])->name('order.updateStatusPaidKurir');
-    Route::get('/order/kurir/{order}/updateStatusPodKurir', [CourierController::class, 'updateStatusPodkurir'])->name('order.updateStatusPodKurir');
+    Route::get('/order/kurir/{order}/updateStatusPodKurir', [CourierController::class, 'updateStatusPodKurir'])->name('order.updateStatusPodKurir');
+    Route::get('/order/kurir/inputImage', [CourierController::class, 'indexImageKurir'])->name('order.indexImageKurir');
+    Route::post('/order/kurir/inputImage', [CourierController::class, 'storeImageKurir'])->name('order.storeImageKurir');
+    Route::get('/order/kurir/showImage/{order}', [CourierController::class, 'showImageKurir'])->name('order.showImageKurir');
     Route::get('/order/kurir/{order}/updateStatusDelKurir', [CourierController::class, 'updateStatusDelKurir'])->name('order.updateStatusDelKurir');
     Route::get('/message/kurir', [CourierController::class, 'courierMessage'])->name('courier.message');
     Route::post('/message/kurir', [CourierController::class, 'courierMessageStore'])->name('courier.messageStore');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Order extends Model
 {
@@ -27,6 +28,22 @@ class Order extends Model
         'status_transaction',
         'product_received',
     ];
+
+    public function images()
+   {
+       return $this->hasOne(Image::class); 
+   }
+
+
+   /*public static function getOrderId($id)
+   {
+       return Image::where('order_id', $id)->get();
+   }*/
+
+   public static function getData()
+    {
+        return Order::with('images')->get();
+    }
 
     public static function index()
     {
@@ -247,5 +264,6 @@ class Order extends Model
             'product_received' => 'pending',
         ]);
     }
+    
 
 }

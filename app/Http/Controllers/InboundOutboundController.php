@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Informations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,13 @@ class InboundOutboundController extends Controller
         return redirect()->route('inboundoutbound.order');
     }
 
+    public function showImageInboundOutbound(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('inboundoutbound.showimage', compact('order', 'image'));
+    }
+
     public function inboundoutboundMessage()
     {
         return view('inboundoutbound.message');
@@ -61,6 +69,7 @@ class InboundOutboundController extends Controller
         Alert::toast('Data baru berhasil dibuat.', 'success');
         return redirect()->route('inbundoutbound.message');
     }
+
 
     /**
      * Display a listing of the resource.

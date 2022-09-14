@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.inboundoutbound.master')
 
 @section('title', '- Order')
 

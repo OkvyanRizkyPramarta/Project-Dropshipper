@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Image;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ImportData;
@@ -21,7 +22,8 @@ class OrderController extends Controller
     
     public function index()
     {
-        $order = Order::all();
+        //$order = Order::all();
+        $order = Order::with('images')->get();
         return view('order.index', compact('order'));
     }
 
@@ -139,21 +141,21 @@ class OrderController extends Controller
     {
         Order::updateStatusTransaction($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('kasir.order');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusTransactionUnfinished(Order $order)
     {
         Order::updateStatusTransactionUnfinished($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('kasir.order');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusReceived(Order $order)
     {
         Order::updateStatusReceived($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('kasir.order');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusReceivedPending(Order $order)
@@ -161,6 +163,46 @@ class OrderController extends Controller
         Order::updateStatusReceivedPending($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('kasir.order');
+    }
+
+    public function indexImage()
+    {
+        $image = Image::all();
+        $order = Order::all();
+        return view('order.inputimage', compact('image', 'order'));
+    }
+
+    public function storeImage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'image' => 'required',
+        ]);
+            
+        $image = new Image;
+        $image->image = $request->file('image')->store('images', 'public');
+
+        $order = new Order;
+        $order->id = $request->get('order_id');
+
+        $image->order()->associate($order);
+
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
+        $image->save();
+
+        Alert::toast('Data baru berhasil dibuat.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function showImage(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('order.showimage', compact('order', 'image'));
     }
 
     /*public function import(Request $request){

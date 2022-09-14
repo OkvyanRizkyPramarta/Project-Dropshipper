@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Order;
 use App\Models\Courier;
+use App\Models\Image;
 use App\Models\Informations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +56,46 @@ class CourierController extends Controller
         Order::updateStatusDel($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('courier.order');
+    }
+
+    public function indexImageKurir()
+    {
+        $image = Image::all();
+        $order = Order::all();
+        return view('courier.inputimage', compact('image', 'order'));
+    }
+
+    public function storeImageKurir(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'image' => 'required',
+        ]);
+            
+        $image = new Image;
+        $image->image = $request->file('image')->store('images', 'public');
+
+        $order = new Order;
+        $order->id = $request->get('order_id');
+
+        $image->order()->associate($order);
+
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
+        $image->save();
+
+        Alert::toast('Data baru berhasil dibuat.', 'success');
+        return redirect()->route('courier.order');
+    }
+
+    public function showImageKurir(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('courier.showimage', compact('order', 'image'));
     }
 
     public function courierMessage()

@@ -44,7 +44,10 @@
 								href="{{ route('export') }}">
 										Export Data
 								</a>
-								
+								<a class="btn btn-primary" 
+								href="{{ route('order.indexImage') }}">
+										Input Image
+								</a>
 							    <div class="table-responsive">
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
@@ -58,6 +61,7 @@
 												<th class="cell">Product Checking</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
+												<th class="cell">Image POD</th>
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
@@ -67,7 +71,7 @@
 											</tr>
 										</thead>
 										<tbody>
-										@foreach($order as $o)
+										@foreach($order as $key=>$o)
 											<tr>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
@@ -106,6 +110,12 @@
 														<a href="{{ route('order.updateStatusPaidPending', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success"> 
+														<a href="{{ route('order.showImage', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<span>IMAGE</span>
 													</span>
 												</td>
 												<td class="cell">

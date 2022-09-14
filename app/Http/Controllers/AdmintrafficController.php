@@ -8,9 +8,11 @@ use App\Models\Admintraffic;
 use App\Models\Informations;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Image;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Imports\ImportData;
+use App\Exports\ExportData;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Validator;
@@ -64,6 +66,10 @@ class AdmintrafficController extends Controller
             //redirect
             return redirect()->route('admintraffic.order')->with(['error' => 'Data Gagal Diimport!']);
         }
+    }
+
+    public function exportAdmintraffic(Request $request){
+        return Excel::download(new ExportData, 'orders.xlsx');
     }
 
     public function updateStatusCheckingAdmintraffic(Order $order)
@@ -225,6 +231,46 @@ class AdmintrafficController extends Controller
         Alert::toast('Data berhasil diedit.', 'success');
         return Redirect::to('/admintraffic/user');
         //return redirect()->route('admintraffic.user');
+    }
+
+    public function indexImageAdmintraffic()
+    {
+        $image = Image::all();
+        $order = Order::all();
+        return view('admintraffic.inputimage', compact('image', 'order'));
+    }
+
+    public function storeImageAdmintraffic(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'image' => 'required',
+        ]);
+            
+        $image = new Image;
+        $image->image = $request->file('image')->store('images', 'public');
+
+        $order = new Order;
+        $order->id = $request->get('order_id');
+
+        $image->order()->associate($order);
+
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
+        $image->save();
+
+        Alert::toast('Data baru berhasil dibuat.', 'success');
+        return redirect()->route('admintraffic.order');
+    }
+
+    public function showImageAdmintraffic(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('admintraffic.showimage', compact('order', 'image'));
     }
 
     public function messageDetailAdmintraffic()

@@ -40,6 +40,10 @@
 			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
+								<a class="btn btn-primary" 
+									href="{{ route('order.indexImage') }}">
+											Input Image
+								</a>
 							    <div class="table-responsive">
 							        <table class="table app-table-hover mb-0 text-left">
 										<thead>
@@ -53,6 +57,7 @@
 												<th class="cell">Product Checking</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
+												<th class="cell">Image POD</th>
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
@@ -100,6 +105,12 @@
 														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success"> 
+														<a href="{{ route('order.showImageKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<span>IMAGE</span>
 													</span>
 												</td>
 												<td class="cell">

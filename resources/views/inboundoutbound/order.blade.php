@@ -53,6 +53,7 @@
 												<th class="cell">Product Checking</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
+												<th class="cell">Image POD</th>
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
@@ -100,6 +101,12 @@
 														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success"> 
+														<a href="{{ route('order.showImageInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<span>IMAGE</span>
 													</span>
 												</td>
 												<td class="cell">

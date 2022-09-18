@@ -41,7 +41,7 @@
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
 								<a class="btn btn-primary" 
-									href="{{ route('order.indexImage') }}">
+									href="{{ route('order.indexImageKurir') }}">
 											Input Image
 								</a>
 							    <div class="table-responsive">

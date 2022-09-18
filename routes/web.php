@@ -75,6 +75,7 @@ Route::middleware(['auth', 'InboundOutbound'])->group(function () {
     Route::get('/account/inboundoutbound', [InboundOutboundController::class, 'account'])->name('inboundoutbound.account');
     Route::get('/order/inboundoutbound', [InboundOutboundController::class, 'order'])->name('inboundoutbound.order');
     Route::get('/order/inboundoutbound/{order}/updateStatusCheckingInboundOutbound', [InboundOutboundController::class, 'updateStatusCheckingInboundOutbound'])->name('order.updateStatusCheckingInboundOutbound');
+    Route::get('/order/inboundoutbound/{order}/updateStatusCheckingPendingInboundOutbound', [InboundOutboundController::class, 'updateStatusCheckingPendingInboundOutbound'])->name('order.updateStatusCheckingPendingInboundOutbound');
     Route::get('/order/inboundoutbound/showImage/{order}', [InboundOutboundController::class, 'showImageInboundOutbound'])->name('order.showImageInboundOutbound');
     Route::get('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessage'])->name('inboundoutbound.message');
     Route::post('/message/inboundoutbound', [InboundOutboundController::class, 'inboundoutboundMessageStore'])->name('inboundoutbound.messageStore');

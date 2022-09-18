@@ -76,7 +76,7 @@
 														<a href="{{ route('order.updateStatusCheckingInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusCheckingPendingInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>DONE</span>
 														@endif
 													</span>

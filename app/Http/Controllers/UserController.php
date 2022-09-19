@@ -73,6 +73,11 @@ class UserController extends Controller
             'phone_number' => 'required|numeric|min:10|max:15',
         ]);
 
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
         User::create([
             'name' => $request['name'],
             'username' => $request['username'],
@@ -84,6 +89,7 @@ class UserController extends Controller
             'whatsapp_number' => $request['whatsapp_number'],
         ]);
 
+        
         return redirect()->route('account.user');
         
     }

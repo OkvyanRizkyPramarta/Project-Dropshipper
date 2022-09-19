@@ -82,7 +82,7 @@
 								<div class="item border-bottom py-3">
 								    <div class="row justify-content-between align-items-center">
 									    <div class="col-auto">
-										    <div class="item-label"><strong>Nomer Telepon</strong></div>
+										    <div class="item-label"><strong>Nomer Whatsapp</strong></div>
 									        <div class="item-data">
 												{{ $user->whatsapp_number }}
 									        </div>

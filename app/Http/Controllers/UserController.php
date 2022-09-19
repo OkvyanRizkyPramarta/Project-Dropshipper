@@ -69,8 +69,9 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'role' => 'required',
-            'id_card_number' => 'required|numeric|min:16|max:16',
-            'phone_number' => 'required|numeric|min:10|max:15',
+            'id_card_number' => 'required|numeric|size:16',
+            'phone_number' => 'required|numeric|min:10|max:14',
+            'whatsapp_number' => 'numeric|min:10|max:14',
         ]);
 
         if ($validator->fails()) {

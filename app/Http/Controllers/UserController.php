@@ -64,20 +64,20 @@ class UserController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255|alpha',
+            'name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'username' => 'required|min:4|alpha-dash',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'role' => 'required',
-            'id_card_number' => 'required|numeric|size:16',
-            'phone_number' => 'required|numeric|min:10|max:14',
-            'whatsapp_number' => 'numeric|min:10|max:14',
+            'id_card_number' => 'required|numeric|digits:16',
+            'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
         ]);
 
         if ($validator->fails()) {
             Alert::toast($validator->messages()->all()[0], 'error');
             return redirect()->back()->withInput();
         }
+
 
         User::create([
             'name' => $request['name'],

@@ -70,9 +70,9 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'string', new isValidPassword()],
             'role' => 'required',
-            'id_card_number' => 'required|numeric|digits:16',
-            'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
-            'whatsapp_number' => 'string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
+             'id_card_number' => 'required|numeric|digits:16',
+            'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/|regex:/(0)[0-9]{9}/',
+            'whatsapp_number' => 'string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/|regex:/(0)[0-9]{9}/',
         ]);
 
         if ($validator->fails()) {

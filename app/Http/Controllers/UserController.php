@@ -66,12 +66,13 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|regex:/^([^0-9]*)$/',
-            'username' => 'required|min:4|alpha-dash',
+            'username' => 'required|min:4|alpha_dash',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'string', new isValidPassword()],
             'role' => 'required',
             'id_card_number' => 'required|numeric|digits:16',
             'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
+            'whatsapp_number' => 'string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
         ]);
 
         if ($validator->fails()) {

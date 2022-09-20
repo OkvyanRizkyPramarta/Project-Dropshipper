@@ -96,18 +96,20 @@
 			//changing input type text
 			$('#passwordInputID').prop("type", "text");
 			//removing fa-eye class
-			$('#eyeChangeId').removeClass('fa-eye'); 
+			$('#eyeChangeId').removeClass('fa-eye-slash'); 
+			
 			//adding fa-eye-slash class
-			$('#eyeChangeId').addClass('fa-eye-slash'); 
+			$('#eyeChangeId').addClass('fa-eye'); 
+			
 		} 
 		else 
 		{
 			//changing type passord
 			$('#passwordInputID').prop("type", "password");
 			//removinf fa-eye-slash class
-			$('#eyeChangeId').removeClass('fa-eye-slash'); 
+			$('#eyeChangeId').removeClass('fa-eye'); 
 			//adding fa-eye class
-			$('#eyeChangeId').addClass('fa-eye'); 
+			$('#eyeChangeId').addClass('fa-eye-slash'); 
 		}
 	}
 </script>

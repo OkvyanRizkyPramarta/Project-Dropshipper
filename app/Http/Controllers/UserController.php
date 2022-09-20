@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Rules\IsValidPassword;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -67,7 +68,7 @@ class UserController extends Controller
             'name' => 'required|max:255|regex:/^([^0-9]*)$/',
             'username' => 'required|min:4|alpha-dash',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => ['required', 'string', new isValidPassword()],
             'role' => 'required',
             'id_card_number' => 'required|numeric|digits:16',
             'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/',
@@ -78,8 +79,10 @@ class UserController extends Controller
             return redirect()->back()->withInput();
         }
 
+        dd($request);
 
-        User::create([
+
+        /*User::create([
             'name' => $request['name'],
             'username' => $request['username'],
             'email' => $request['email'],
@@ -91,7 +94,7 @@ class UserController extends Controller
         ]);
 
         
-        return redirect()->route('account.user');
+        return redirect()->route('account.user');*/
         
     }
 

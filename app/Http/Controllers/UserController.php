@@ -79,10 +79,10 @@ class UserController extends Controller
             return redirect()->back()->withInput();
         }
 
-        dd($request);
+        //dd($request);
 
 
-        /*User::create([
+        User::create([
             'name' => $request['name'],
             'username' => $request['username'],
             'email' => $request['email'],
@@ -94,7 +94,7 @@ class UserController extends Controller
         ]);
 
         
-        return redirect()->route('account.user');*/
+        return redirect()->route('account.user');
         
     }
 

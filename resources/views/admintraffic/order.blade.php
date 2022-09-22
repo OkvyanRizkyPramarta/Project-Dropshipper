@@ -6,34 +6,15 @@
 
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
 		    <div class="container-xl">
-			
-			    
-			<div class="row g-3 mb-4 align-items-center justify-content-between">
+			    <div class="row g-3 mb-4 align-items-center justify-content-between">
 				    <div class="col-auto">
 			            <h1 class="app-page-title mb-0">Halaman Pesanan</h1>
-				    </div>
-				    <div class="col-auto">
-					     <div class="page-utilities">
-						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
-							    <div class="col-auto">
-								    <form class="table-search-form row gx-1 align-items-center">
-					                    <div class="col-auto">
-					                        <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Pencarian">
-					                    </div>
-					                    <div class="col-auto">
-					                        <button type="submit" class="btn app-btn-secondary">Cari</button>
-					                    </div>
-					                </form>
-							    </div>
-						    </div>
-					    </div>
 				    </div>
 			    </div>
 			    
 			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
 				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false"></a>
 				</nav>
-				
 				<div class="tab-content" id="orders-table-tab-content">
 					<form action="{{ route('importAdmintraffic') }}" method="POST" enctype="multipart/form-data">
 					@csrf
@@ -47,11 +28,11 @@
 										Export Data
 								</a>
 								<a class="btn btn-primary" 
-									href="{{ route('order.indexImageAdmintraffic') }}">
-											Input Image
+								href="{{ route('order.indexImageAdmintraffic') }}">
+										Input Image
 								</a>
 							    <div class="table-responsive">
-							        <table class="table app-table-hover mb-0 text-left">
+							        <table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
 												<th class="cell">OrderDate</th>
@@ -69,10 +50,11 @@
 												<th class="cell">Keterangan</th>
 												<th class="cell">Status Transaction</th>
 												<th class="cell">Product Received</th>
+												<th class="cell"></th>
 											</tr>
 										</thead>
 										<tbody>
-										@foreach($order as $o)
+										@foreach($order as $key=>$o)
 											<tr>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
@@ -176,6 +158,11 @@
 										@endforeach
 										</tbody>
 									</table>
+									<script>
+										$(document).ready(function() {
+										$('#data_users_reguler').DataTable();
+										} );
+									</script>
 						        </div>
 						    </div>	
 						</div>
@@ -199,3 +186,5 @@
 		    </div>
 	    </div>
 @endsection
+
+

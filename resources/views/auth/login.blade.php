@@ -19,6 +19,9 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="{{ asset('admin/assets/css/portal.css') }}" type="text/css">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head> 
 <body class="app app-login p-0">    	
     <div class="row g-0 app-auth-wrapper">
@@ -35,7 +38,7 @@
 						<form class="auth-form login-form" method="POST" action="{{ route('login') }}">  
                             @csrf       
 							<div class="email mb-3">
-								<label class="sr-only" for="signin-email">Email</label>
+								<h6>Username</h6>
                                 <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Masukkan Username" required  autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -44,8 +47,8 @@
                                 @enderror
                             </div><!--//form-group-->
 							<div class="password mb-3">
-								<label class="sr-only" for="signin-password">Password</label>
-                                <input id="password" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password"  placeholder="Masukkan Password" required autocomplete="current-password">
+								<h6>Password&nbsp;<i id="eyeChangeId" class="fa fa-eye" onclick="eyeEnableOrDisable()"></i></h6>
+                                <input id="passwordInputID" type="password" class="form-control signin-password @error('password') is-invalid @enderror" name="password"  placeholder="Masukkan Password" required autocomplete="current-password">
 								<div class="extra mt-3 row justify-content-between">
 									<div class="col-6">
 										<div class="form-check">
@@ -88,5 +91,33 @@
 <!-- Page Specific JS -->
 <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
+<script type="text/javascript">
+	//Javascript function definition
+	function eyeEnableOrDisable() 
+	{
+		//getting type of the password field element by jQuery
+		var x = $('#passwordInputID').prop("type"); 
+		if (x === "password") 
+		{
+			//changing input type text
+			$('#passwordInputID').prop("type", "text");
+			//removing fa-eye class
+			$('#eyeChangeId').removeClass('fa-eye-slash'); 
+			
+			//adding fa-eye-slash class
+			$('#eyeChangeId').addClass('fa-eye'); 
+			
+		} 
+		else 
+		{
+			//changing type passord
+			$('#passwordInputID').prop("type", "password");
+			//removinf fa-eye-slash class
+			$('#eyeChangeId').removeClass('fa-eye'); 
+			//adding fa-eye class
+			$('#eyeChangeId').addClass('fa-eye-slash'); 
+		}
+	}
+</script>
 </body>
 </html> 

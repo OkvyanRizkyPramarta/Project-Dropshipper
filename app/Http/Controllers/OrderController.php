@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use App\Models\Order;
 use App\Models\Image;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,13 +20,36 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    public function index()
+
+    public function index(Request $request)
     {
-        //$order = Order::all();
-        $order = Order::with('images')->get();
+        if($request){
+            $order = Order::where('order_id', 'like', '%'.$request->search.'%')->get();
+        } else {
+            
+            $order = Order::sortable()->get();
+        }
+        
         return view('order.index', compact('order'));
     }
+    
+    // public function cari(Request $request)
+    // {
+    //     //$order = Order::with('images')->get();
+
+    //     $order = Order::where('username', 'like', '%'.$request->search.'%')->get();
+
+    //     //return view('order.index', compact('order'));
+    //     return Redirect::to('/order');
+    // }
+
+    // public function index()
+    // {
+    //     $order = Order::sortable()->get();
+        
+    //     return view('order.index', compact('order'));
+    // }
+
 
     /**
      * Show the form for creating a new resource.

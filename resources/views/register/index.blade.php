@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', '- Order')
+@section('title', '- Register')
 
 @section('content')	
 	    <div class="col-5 text-center p-5">
@@ -19,7 +19,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-								<a>Maksimal 255 Karakter, Alphabet</a>
+								<p style="font-size:11px;color:#CDCDCD"><i>Maksimal 255 Karakter, Alphabet</i></p>
 							</div>
                             <div class="email mb-3">
 								<i><span class="text-danger">*</span> Wajib</i>

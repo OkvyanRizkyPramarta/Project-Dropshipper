@@ -4,17 +4,39 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Http\Request;
 
 class Order extends Model
 {
     use HasFactory;
 
+    use Sortable;
+
     protected $fillable = [
         'order_date',
         'username',
         'order_id',
         'customer_address',
+        'customer_phone',
+        'user_kelurahan',
+        'user_kecamatan',
+        'cod_ammount',
+        'product_checking',
+        'status_sending',
+        'status_cod_ammount',
+        'status_pod',
+        'status_order',
+        'keterangan',
+        'status_transaction',
+        'product_received',
+    ];
+
+    public $sortable = [
+        'order_date', 
+        'username', 
+        'order_id', 
+        'customer_address', 
         'customer_phone',
         'user_kelurahan',
         'user_kecamatan',

@@ -23,6 +23,7 @@ class Order extends Model
         'user_kecamatan',
         'cod_ammount',
         'product_checking',
+        'status_confirm',
         'status_sending',
         'status_cod_ammount',
         'status_pod',
@@ -81,7 +82,11 @@ class Order extends Model
 
     public static function updateStatusCheckingPending(Order $order)
     {
-        if ($order->status_sending == 'sent') {
+        if ($order->status_confirm == 'confirm') {
+            $order->update([
+                'product_checking' => 'done',
+            ]);
+        } else if ($order->status_sending == 'sent') {
             $order->update([
                 'product_checking' => 'done',
             ]);
@@ -102,13 +107,24 @@ class Order extends Model
                 'product_checking' => 'pending',
             ]);
         }
+    }
 
-
+    public static function updateStatusConfirm(Order $order)
+    {
+        if ($order->product_checking == 'pending') {
+            $order->update([
+                'status_confirm' => 'pending',
+            ]);
+        } else {
+            $order->update([
+                'status_confirm' => 'confirm',
+            ]);
+        } 
     }
 
     public static function updateStatusSent(Order $order)
     {
-        if ($order->product_checking == 'pending') {
+        if ($order->status_confirm == 'pending') {
             $order->update([
                 'status_sending' => 'pending',
             ]);

@@ -10,8 +10,20 @@
 			    
 			<div class="row g-3 mb-4 align-items-center justify-content-between">
 				    <div class="col-auto">
-			            <h1 class="app-page-title mb-0">Halaman Pesanan</h1>
+			            <h1 class="app-page-title mb-0">Halaman Pesanan</h1><br>
+						<form action="" method="POST" enctype="multipart/form-data">
+						<p style="font: size 14px;color:#131313"><b>Confirm Status Checking</b></p>
+							<td class="cell">
+								<span class="badge bg-success">
+									<a  class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+									<span>
+										Confirm
+									</span>
+								</span>
+							</td>
+						</form>
 				    </div>
+					
 			    </div>
 			    
 			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
@@ -35,6 +47,7 @@
 												<th class="cell">Customer Phone</th>
 												<th class="cell">COD Mount</th>
 												<th class="cell">Product Checking</th>
+												<th class="cell">Confirm Status</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
 												<th class="cell">Image POD</th>
@@ -62,6 +75,17 @@
 														@else
 														<a href="{{ route('order.updateStatusCheckingPendingInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>DONE</span>
+														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_confirm == 'pending')
+														<a href="{{ route('order.updateStatusConfirmInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>CONFIRM</span>
 														@endif
 													</span>
 												</td>
@@ -150,20 +174,6 @@
 						        </div>
 						    </div>	
 						</div>
-
-						<nav class="app-pagination">
-							<ul class="pagination justify-content-center">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-							    </li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-								    <a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>			
 			        </div>
 					</form>
 				</div> 

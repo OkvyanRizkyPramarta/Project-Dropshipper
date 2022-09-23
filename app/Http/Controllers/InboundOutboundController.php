@@ -44,6 +44,13 @@ class InboundOutboundController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusConfirmInboundOutbound(Order $order)
+    {
+        Order::updateStatusConfirm($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('inboundoutbound.order');
+    }
+
     public function showImageInboundOutbound(Order $order)
     {
         $image = Image::getImageByOrder($order->id);

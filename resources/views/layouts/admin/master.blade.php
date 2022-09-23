@@ -59,7 +59,6 @@
                             </a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								<li><a class="dropdown-item" href="{{ route('owner.account') }}">Informasi Akun</a></li>
-								<li><a class="dropdown-item" href="">Pengaturan</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
 									<a class="dropdown-item" href="{{ route('logout') }}"  data-toggle="modal" data-target="#logoutModal"

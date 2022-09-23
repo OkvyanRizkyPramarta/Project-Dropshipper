@@ -23,7 +23,7 @@
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
 								<p style="font-size:16px;color:#CDCDCD"><i><span class="text-danger">*</span> Wajib</i></p>
-								<p style="font-size:13px;color:#CDCDCD"><i>Gunakan File Type : <b>Excel Workbook</b></i></p>
+								<p style="font-size:13px;color:#CDCDCD"><i>Gunakan File Type : <b>Microsoft Excel Worksheet (.xlsx)</b></i></p>
 								<input type="file" name="file" class="custom-file-input" id="customFile">
 								<button class="btn btn-primary">Import Excel</button>
 								<a class="btn btn-warning" 

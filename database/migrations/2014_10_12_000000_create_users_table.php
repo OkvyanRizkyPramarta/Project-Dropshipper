@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('role', 
             [
             'Owner',
-            'OutboundInbound',
+            'InboundOutbound',
             'Admintraffic',
             'Kasir',
             'Kurir',

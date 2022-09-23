@@ -92,6 +92,22 @@ class AccountController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255|regex:/^([^0-9]*)$/',
+            'username' => 'required|min:4|alpha_dash',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', 'string', new isValidPassword()],
+            'role' => 'required',
+             'id_card_number' => 'required|numeric|digits:16',
+            'phone_number' => 'required|string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/|regex:/(0)[0-9]{9}/',
+            'whatsapp_number' => 'string|alpha_num|min:10|max:14|regex:/^([^a-zA-Z]*)$/|regex:/(0)[0-9]{9}/',
+        ]);
+
+        if ($validator->fails()) {
+            Alert::toast($validator->messages()->all()[0], 'error');
+            return redirect()->back()->withInput();
+        }
+
         $user = User::findOrFail($user->id);
 
         $user->update([

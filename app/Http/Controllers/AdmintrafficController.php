@@ -15,6 +15,7 @@ use App\Imports\ImportData;
 use App\Exports\ExportData;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use App\Rules\IsValidPassword;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;

@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\User;
 use App\Models\Informations;
 use Illuminate\Http\Request;
+use App\Rules\IsValidPassword;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;

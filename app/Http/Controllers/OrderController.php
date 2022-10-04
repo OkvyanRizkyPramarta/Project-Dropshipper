@@ -105,6 +105,20 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
+    public function updateStatusConfirm(Order $order)
+    {
+        Order::updateStatusConfirm($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
+    public function updateStatusConfirmPending(Order $order)
+    {
+        Order::updateStatusConfirmPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusSent(Order $order)
     {
         Order::updateStatusSent($order);

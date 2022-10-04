@@ -122,6 +122,31 @@ class Order extends Model
         } 
     }
 
+    public static function updateStatusConfirmPending(Order $order)
+    {
+        if ($order->status_sending == 'sent') {
+            $order->update([
+                'status_confirm' => 'confirm',
+            ]);
+        } else if ($order->status_cod_ammount == 'paid') {
+            $order->update([
+                'status_confirm' => 'confirm',
+            ]);
+        } else if ($order->status_pod == 'pod') {
+            $order->update([
+                'status_confirm' => 'confirm',
+            ]);
+        } else if ($order->status_order == 'delivered') {
+            $order->update([
+                'status_confirm' => 'confirm',
+            ]);
+        } else { 
+            $order->update([
+                'status_confirm' => 'pending',
+            ]);
+        }
+    }
+
     public static function updateStatusSent(Order $order)
     {
         if ($order->status_confirm == 'pending') {

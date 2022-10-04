@@ -77,14 +77,28 @@ class AdmintrafficController extends Controller
     {
         Order::updateStatusChecking($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('order.index');
+        return redirect()->route('admintraffic.order');
     }
 
     public function updateStatusCheckingPendingAdmintraffic(Order $order)
     {
         Order::updateStatusCheckingPending($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
-        return redirect()->route('order.index');
+        return redirect()->route('admintraffic.order');
+    }
+
+    public function updateStatusConfirmAdmintraffic(Order $order)
+    {
+        Order::updateStatusConfirm($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('admintraffic.order');
+    }
+
+    public function updateStatusConfirmPendingAdmintraffic(Order $order)
+    {
+        Order::updateStatusConfirmPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('admintraffic.order');
     }
 
     public function updateStatusSentAdmintraffic(Order $order)

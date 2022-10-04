@@ -45,6 +45,7 @@
 												<th class="cell">Customer Phone</th>
 												<th class="cell">COD Mount</th>
 												<th class="cell">Product Checking</th>
+												<th class="cell">Status Confirm</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
 												<th class="cell">Image POD</th>
@@ -73,6 +74,17 @@
 														@else
 														<a href="{{ route('order.updateStatusCheckingPending', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>DONE</span>
+														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success">
+														@if ($o->status_confirm == 'pending')
+														<a href="{{ route('order.updateStatusConfirm', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>PENDING</span>
+														@else
+														<a href="{{ route('order.updateStatusConfirmPending', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+															<span>CONFIRM</span>
 														@endif
 													</span>
 												</td>

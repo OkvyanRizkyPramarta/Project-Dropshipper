@@ -39,6 +39,8 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/order/export', [OrderController::class, 'export'])->name('export');;
     Route::get('/order/{order}/updateStatusChecking', [OrderController::class, 'updateStatusChecking'])->name('order.updateStatusChecking');
     Route::get('/order/{order}/updateStatusCheckingPending', [OrderController::class, 'updateStatusCheckingPending'])->name('order.updateStatusCheckingPending');
+    Route::get('/order/{order}/updateStatusConfirm', [OrderController::class, 'updateStatusConfirm'])->name('order.updateStatusConfirm');
+    Route::get('/order/{order}/updateStatusConfirmPending', [OrderController::class, 'updateStatusConfirmPending'])->name('order.updateStatusConfirmPending');
     Route::get('/order/{order}/updateStatusSent', [OrderController::class, 'updateStatusSent'])->name('order.updateStatusSent');
     Route::get('/order/{order}/updateStatusSentPending', [OrderController::class, 'updateStatusSentPending'])->name('order.updateStatusSentPending');
     Route::get('/order/{order}/updateStatusPaid', [OrderController::class, 'updateStatusPaid'])->name('order.updateStatusPaid');
@@ -91,6 +93,8 @@ Route::middleware(['auth', 'Admintraffic'])->group(function () {
     Route::get('/order/admintraffic/export', [AdmintrafficController::class, 'exportAdmintraffic'])->name('exportAdmintraffic');;
     Route::get('/order/admintraffic/{order}/updateStatusCheckingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingAdmintraffic'])->name('order.updateStatusCheckingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusCheckingPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusCheckingPendingAdmintraffic'])->name('order.updateStatusCheckingPendingAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusConfirm', [AdmintrafficController::class, 'updateStatusConfirmAdmintraffic'])->name('order.updateStatusConfirmAdmintraffic');
+    Route::get('/order/admintraffic/{order}/updateStatusConfirmPending', [AdmintrafficController::class, 'updateStatusConfirmPendingAdmintraffic'])->name('order.updateStatusConfirmPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusSentAdmintraffic', [AdmintrafficController::class, 'updateStatusSentAdmintraffic'])->name('order.updateStatusSentAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusSentPendingAdmintraffic', [AdmintrafficController::class, 'updateStatusSentPendingAdmintraffic'])->name('order.updateStatusSentPendingAdmintraffic');
     Route::get('/order/admintraffic/{order}/updateStatusPaidAdmintraffic', [AdmintrafficController::class, 'updateStatusPaidAdmintraffic'])->name('order.updateStatusPaidAdmintraffic');

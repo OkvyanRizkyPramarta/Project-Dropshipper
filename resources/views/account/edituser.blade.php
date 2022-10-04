@@ -15,24 +15,46 @@
 								<i><span class="text-danger">*</span> Wajib</i>
 								<input id="signup-name" name="name" type="text" class="form-control signup-name" 
 								placeholder="Nama" value="{{ $user->name }}" required="required">
-								<a>Maksimal 255 Karakter, Alphabet</a>
+								@error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+								<p style="font-size:12px;color:#CDCDCD"><i>Bisa huruf dan simbol. Tidak bisa angka</i></p>
 							</div>
                             <div class="email mb-3">
 								<i><span class="text-danger">*</span> Wajib</i>
 								<input id="signup-name" name="username" type="text" class="form-control signup-name" 
 								placeholder="Username" value="{{ $user->username }}" required="required">
+								@error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+								<p style="font-size:12px;color:#CDCDCD"><i>Bisa huruf, angka, dan simbol. tidak bisa spasi</i></p>
 							</div> 
 							<div class="email mb-3">
 								<i><span class="text-danger">*</span> Wajib</i>
                                 <input id="signin-email" type="email" class="form-control signin-email @error('email') is-invalid @enderror" 
 								name="email"  placeholder="Email address" value="{{ $user->email }}" required autocomplete="email" autofocus>
+								@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 							
 							<div class="password mb-3">
 								<i><span class="text-danger">*</span> Wajib</i>
 								<i id="eyeChangeId" class="fa fa-eye" onclick="eyeEnableOrDisable()"></i>
                                 <input id="passwordInputID" type="password" class="form-control signin-password @error('password') is-invalid @enderror" 
-								name="password" placeholder="Masukkan Password ulang" required autocomplete="current-password"> 
+								name="password" placeholder="Masukkan Password ulang" required autocomplete="current-password">
+								@error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror	 
+								<p style="font-size:12px;color:#CDCDCD"><i>Minimal 8 Karakter, Harus berisi minimal 1 huruf kapital, angka, dan simbol</i></p>
 							</div>
 							
                             <div class="email mb-3">
@@ -52,18 +74,22 @@
 								<label class="sr-only" for="signup-email">Nomor KTP</label>
 								<input id="signup-name" name="id_card_number" type="text" class="form-control signup-name" 
 								placeholder="Nomor KTP" value="{{ $user->id_card_number }}" required="required">
+								<p style="font-size:12px;color:#CDCDCD"><i>Harus berisi angka dan jumlahnya 16</i></p>
 							</div>
                             <div class="email mb-3">
 								<i><span class="text-danger">*</span> Wajib</i>
 								<label class="sr-only" for="signup-email">Nomor Telepon</label>
 								<input id="signup-name" name="phone_number" type="text" class="form-control signup-name" 
 								placeholder="Nomor Telepon" value="{{ $user->phone_number }}" required="required">
+								<p style="font-size:12px;color:#CDCDCD"><i>Harus diawali angka 0 dan jumlahnhya minimal 10</i></p>
+
 							</div>
                             <div class="email mb-3">
 								<i><span class="text-danger">*</span> Opsional</i>
 								<label class="sr-only" for="signup-email">Nomor Whatsapp</label>
 								<input id="signup-name" name="whatsapp_number" type="text" class="form-control signup-name" 
 								value="{{ $user->whatsapp_number }}" placeholder="Nomor Whatsapp">
+								<p style="font-size:12px;color:#CDCDCD"><i>Harus diawali angka 0 dan jumlahnhya minimal 10</i></p>
 							</div>
                             <div class="text-center">
 							    <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Ubah Data</button>

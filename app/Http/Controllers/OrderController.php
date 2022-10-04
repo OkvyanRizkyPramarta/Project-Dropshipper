@@ -319,14 +319,29 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        
-        $order = Order::find($id);
+        // Image::where("order_id", $id)->delete();
+        // Order::where("id", $id)->delete();
+
+        Image::destroyByOrder($order->id);
         $order->delete();
 
         Alert::toast('Data berhasil dihapus.', 'success');
         return redirect()->route('order.index');
     }
+
+    public function multipleDestroyOrder(Request $request)
+	{
+
+        
+        $ids = $request->ids;
+
+        $order = Order::whereIn('id', [$request->id]);
+
+        Order::whereIn('id', $ids)->delete();
+        return redirect()->route('order.index');
+
+	}
     
 }

@@ -57,9 +57,9 @@ Route::middleware(['auth', 'Owner'])->group(function () {
     Route::get('/order/{order}/updateStatusReceived', [OrderController::class, 'updateStatusReceived'])->name('order.updateStatusReceived');
     Route::get('/order/{order}/updateStatusReceivedPending', [OrderController::class, 'updateStatusReceivedPending'])->name('order.updateStatusReceivedPending');
     Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
-    Route::put('/order/{order}',[OrderController::class,'update'])->name('order.update');
-    Route::delete('/order/{order}',[OrderController::class, 'destroy'])->name('order.destroy');
-    Route::resource('/document', DocumentController::class);
+    Route::put('/order/{order}', [OrderController::class,'update'])->name('order.update');
+    Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::delete('/order/multipleDestroyOrder', [OrderController::class, 'multipleDestroyOrder'])->name('order.multipleDestroyOrder');
     Route::get('/account', [AccountController::class, 'index'])->name('owner.account');
     Route::resource('/register', UserController::class);
     Route::get('/user',[AccountController::class, 'user'])->name('account.user');

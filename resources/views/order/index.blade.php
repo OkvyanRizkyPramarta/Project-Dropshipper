@@ -11,11 +11,9 @@
 			            <h1 class="app-page-title mb-0">Halaman Pesanan</h1>
 				    </div>
 			    </div>
-			    
 			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
 				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false"></a>
 				</nav>
-				
 				<div class="tab-content" id="orders-table-tab-content">
 					<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
 					@csrf
@@ -38,6 +36,10 @@
 							        <table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
+												<th class="cell" width="50px">
+													<input type="checkbox" id="master">
+												</th>
+												<th class="cell">id</th>
 												<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
 												<th class="cell">Username</th>
@@ -58,8 +60,13 @@
 											</tr>
 										</thead>
 										<tbody>
-										@foreach($order as $key=>$o)
+										@if(count($order) > 0)
+										@foreach($order as $key=>$o)	
 											<tr>
+												<td class="cell">
+													<input type="checkbox" name="ids[{{ $o->id }}]" value="{{ $o->id }}">
+												</td> 
+												<td class="cell">{{ $o->id }}</td>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
 												<td class="cell">{{ $o->username }}</td>
@@ -171,12 +178,20 @@
 												</td>
 											</tr>
 										@endforeach
+										@endif
 										</tbody>
 									</table>
 									<script>
 										$(document).ready(function() {
 										$('#data_users_reguler').DataTable();
 										} );
+									</script>
+									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+									</script>
+									<script language="javascript">
+										$("#checkAll").click(function () {
+											$('input:checkbox').not(this).prop('checked', this.checked);
+										});
 									</script>
 						        </div>
 						    </div>	

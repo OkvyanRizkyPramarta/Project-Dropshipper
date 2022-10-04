@@ -33,4 +33,9 @@ class Image extends Model
     {
         return Image::where('order_id', $id)->get();
     }
+
+    public static function destroyByOrder($order_id)
+    {
+        Image::where('order_id', $order_id)->delete();
+    }
 }

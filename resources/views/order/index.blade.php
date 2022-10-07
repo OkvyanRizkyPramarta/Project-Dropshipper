@@ -36,9 +36,6 @@
 							        <table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-												<th class="cell" width="50px">
-													<input type="checkbox" id="master">
-												</th>
 												<th class="cell">id</th>
 												<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
@@ -63,9 +60,6 @@
 										@if(count($order) > 0)
 										@foreach($order as $key=>$o)	
 											<tr>
-												<td class="cell">
-													<input type="checkbox" name="ids[{{ $o->id }}]" value="{{ $o->id }}">
-												</td> 
 												<td class="cell">{{ $o->id }}</td>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>

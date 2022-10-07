@@ -5,25 +5,11 @@
 @section('content')
 
 	    <div class="app-content pt-3 p-md-3 p-lg-4">
-		    <div class="container-xl">
-			
-			    
-			<div class="row g-3 mb-4 align-items-center justify-content-between">
+		    <div class="container-xl"> 
+				<div class="row g-3 mb-4 align-items-center justify-content-between">
 				    <div class="col-auto">
 			            <h1 class="app-page-title mb-0">Halaman Pesanan</h1><br>
-						<form action="" method="POST" enctype="multipart/form-data">
-						<p style="font: size 14px;color:#131313"><b>Confirm Status Checking</b></p>
-							<td class="cell">
-								<span class="badge bg-success">
-									<a  class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
-									<span>
-										Confirm
-									</span>
-								</span>
-							</td>
-						</form>
 				    </div>
-					
 			    </div>
 			    
 			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
@@ -31,11 +17,13 @@
 				</nav>
 				
 				<div class="tab-content" id="orders-table-tab-content">
-					<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('order.checkboxMultipleStatusConfirmInboundOutbound') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
 						<div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
+							<button class="btn btn-primary">Confirm Status Checking</button>
+							<br> <br> 
 							    <div class="table-responsive">
 									<table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
@@ -61,17 +49,9 @@
 										<tbody>
 										@foreach($order as $o)
 											<tr>
-												<td class="cell">
-													<span class="badge">
-														@if ($o->product_checking == 'pending')
-														<a href="{{ route('order.updateStatusCheckingInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
-															<input type="checkbox" disabled="disabled"/>
-														@else
-														<a href="{{ route('order.updateStatusCheckingPendingInboundOutbound', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
-															<input type="checkbox" checked="checked" disabled="disabled"/>
-														@endif
-													</span>
-												</td>
+												<td class="cell text-center">
+													<input type="checkbox" name="ids[{{ $o->id }}]" value="{{ $o->id }}">
+												</td> 
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
 												<td class="cell">{{ $o->username }}</td>

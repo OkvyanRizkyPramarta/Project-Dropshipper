@@ -51,6 +51,15 @@ class InboundOutboundController extends Controller
         return redirect()->route('inboundoutbound.order');
     }
 
+    public function checkboxMultipleStatusConfirmInboundOutbound(Request $request)
+	{   
+        $ids = $request->ids;
+
+        Order::whereIn('id', $ids)->update(['status_confirm' => 'confirm']);
+        return redirect()->route('order.index');
+
+	}
+
     public function showImageInboundOutbound(Order $order)
     {
         $image = Image::getImageByOrder($order->id);

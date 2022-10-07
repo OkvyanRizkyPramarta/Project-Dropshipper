@@ -111,15 +111,9 @@ class Order extends Model
 
     public static function updateStatusConfirm(Order $order)
     {
-        if ($order->product_checking == 'pending') {
-            $order->update([
-                'status_confirm' => 'pending',
-            ]);
-        } else {
-            $order->update([
-                'status_confirm' => 'confirm',
-            ]);
-        } 
+        $order->update([
+            'status_confirm' => 'confirm',
+        ]);
     }
 
     public static function updateStatusConfirmPending(Order $order)

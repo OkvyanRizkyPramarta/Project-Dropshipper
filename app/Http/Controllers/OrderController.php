@@ -331,17 +331,14 @@ class OrderController extends Controller
         return redirect()->route('order.index');
     }
 
-    public function multipleDestroyOrder(Request $request)
-	{
+    // public function multipleDestroyOrder(Request $request)
+	// {   
+    //     $ids = $request->ids;
 
-        
-        $ids = $request->ids;
+    //     $order = Order::whereIn('id', [$request->id]);
 
-        $order = Order::whereIn('id', [$request->id]);
-
-        Order::whereIn('id', $ids)->delete();
-        return redirect()->route('order.index');
-
-	}
+    //     Order::whereIn('id', $ids)->delete();
+    //     return redirect()->route('order.index');
+	// }
     
 }

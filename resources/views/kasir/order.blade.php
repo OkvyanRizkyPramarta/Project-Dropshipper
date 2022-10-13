@@ -28,6 +28,7 @@
 									<table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
+												<th class="cell">ID</th>
 												<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
 												<th class="cell">Username</th>
@@ -37,6 +38,7 @@
 												<th class="cell">Product Checking</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
+												<th class="cell">Image POD</th>
 												<th class="cell">Status POD</th>
 												<th class="cell">Status Order</th>
 												<th class="cell">Keterangan</th>
@@ -47,6 +49,7 @@
 										<tbody>
 										@foreach($order as $o)
 											<tr>
+												<td class="cell">{{ $o->id }}</td>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
 												<td class="cell">{{ $o->username }}</td>
@@ -84,6 +87,12 @@
 														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
+													</span>
+												</td>
+												<td class="cell">
+													<span class="badge bg-success"> 
+														<a href="{{ route('order.showImageKasir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<span>IMAGE</span>
 													</span>
 												</td>
 												<td class="cell">

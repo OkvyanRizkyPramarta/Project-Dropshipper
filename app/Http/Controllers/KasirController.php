@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Order;
 use App\Models\Kasir;
 use App\Models\Informations;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -25,6 +26,13 @@ class KasirController extends Controller
     {
         $order = Order::all();
         return view('kasir.order', compact('order'));
+    }
+
+    public function showImageKasir(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('kasir.showimage', compact('order', 'image'));
     }
 
     public function updateStatusTransactionKasir(Order $order)

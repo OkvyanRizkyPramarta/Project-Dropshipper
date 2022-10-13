@@ -37,6 +37,13 @@ class CourierController extends Controller
         return redirect()->route('courier.order');
     }
 
+    public function updateStatusSentPendingKurir(Order $order)
+    {
+        Order::updateStatusSentPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusPaidKurir(Order $order)
     {
         Order::updateStatusPaid($order);
@@ -44,11 +51,25 @@ class CourierController extends Controller
         return redirect()->route('courier.order');
     }
 
+    public function updateStatusPaidPendingKurir(Order $order)
+    {
+        Order::updateStatusPaidPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
+    }
+
     public function updateStatusPodKurir(Order $order)
     {
         Order::updateStatusPod($order);
         Alert::toast('Status berhasil diperbarui.', 'success');
         return redirect()->route('courier.order');
+    }
+
+    public function updateStatusPodPendingKurir(Order $order)
+    {
+        Order::updateStatusPodPending($order);
+        Alert::toast('Status berhasil diperbarui.', 'success');
+        return redirect()->route('order.index');
     }
 
     public function updateStatusDelKurir(Order $order)

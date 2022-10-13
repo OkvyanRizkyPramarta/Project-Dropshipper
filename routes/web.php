@@ -127,6 +127,7 @@ Route::middleware(['auth', 'Kasir'])->group(function () {
     Route::get('/dashboard/kasir', [KasirController::class, 'dashboard'])->name('dashboardkasir.index');
     Route::get('/account/kasir', [KasirController::class, 'account'])->name('kasir.account');
     Route::get('/order/kasir', [KasirController::class, 'order'])->name('kasir.order');
+    Route::get('/order/kasir/showImage/{order}', [KasirController::class, 'showImageKasir'])->name('order.showImageKasir');
     Route::get('/order/kasir/{order}/updateStatusTransactionKasir', [KasirController::class, 'updateStatusTransactionKasir'])->name('order.updateStatusTransactionKasir');
     Route::get('/message/kasir', [KasirController::class, 'kasirMessage'])->name('kasir.message');
     Route::post('/message/kasir', [KasirController::class, 'kasirMessageStore'])->name('kasir.messageStore');
@@ -138,8 +139,11 @@ Route::middleware(['auth', 'Kurir'])->group(function () {
     Route::get('/account/kurir', [CourierController::class, 'account'])->name('courier.account');
     Route::get('/order/kurir', [CourierController::class, 'order'])->name('courier.order');
     Route::get('/order/kurir/{order}/updateStatusSentKurir', [CourierController::class, 'updateStatusSentKurir'])->name('order.updateStatusSentKurir');
+    Route::get('/order/kurir/{order}/updateStatusSentPendingKurir', [CourierController::class, 'updateStatusSentPendingKurir'])->name('order.updateStatusSentPendingKurir');
     Route::get('/order/kurir/{order}/updateStatusPaidKurir', [CourierController::class, 'updateStatusPaidKurir'])->name('order.updateStatusPaidKurir');
+    Route::get('/order/kurir/{order}/updateStatusPaidPendingKurir', [CourierController::class, 'updateStatusPaidPendingKurir'])->name('order.updateStatusPaidPendingKurir');
     Route::get('/order/kurir/{order}/updateStatusPodKurir', [CourierController::class, 'updateStatusPodKurir'])->name('order.updateStatusPodKurir');
+    Route::get('/order/kurir/{order}/updateStatusPodPendingKurir', [CourierController::class, 'updateStatusPodPendingKurir'])->name('order.updateStatusPodPendingKurir');
     Route::get('/order/kurir/inputImage', [CourierController::class, 'indexImageKurir'])->name('order.indexImageKurir');
     Route::post('/order/kurir/inputImage', [CourierController::class, 'storeImageKurir'])->name('order.storeImageKurir');
     Route::get('/order/kurir/showImage/{order}', [CourierController::class, 'showImageKurir'])->name('order.showImageKurir');
@@ -153,6 +157,7 @@ Route::middleware(['auth', 'Admin2'])->group(function () {
     Route::get('/dashboard/admin2', [Admin2Controller::class, 'dashboard'])->name('dashboardadmin2.index');
     Route::get('/account/admin2', [Admin2Controller::class, 'account'])->name('admin2.account');
     Route::get('/order/admin2', [Admin2Controller::class, 'order'])->name('admin2.order');
+    Route::get('/order/admin2/showImage/{order}', [Admin2Controller::class, 'showImageAdmin2'])->name('order.showImageAdmin2');
     Route::get('/order/admin2/{order}/updateStatusReceivedAdmin2', [Admin2Controller::class, 'updateStatusReceivedAdmin2'])->name('order.updateStatusReceivedAdmin2');
     Route::get('/message/admin2', [Admin2Controller::class, 'admin2Message'])->name('admin2.message');
     Route::post('/message/admin2', [Admin2Controller::class, 'admin2MessageStore'])->name('admin2.messageStore');

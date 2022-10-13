@@ -295,9 +295,22 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order = Order::findOrFail($order->id);
 
-        $order->update([
+            $order->update([
+                'order_date'        => $request->order_date,
+                'username'          => $request->username,
+                'order_id'          => $request->order_id,
+                'customer_address'  => $request->customer_address,
+                'customer_phone'    => $request->customer_phone,
+                'user_kelurahan'    => $request->user_kelurahan,
+                'user_kecamatan'    => $request->user_kecamatan,
+                'cod_ammount'       => $request->cod_ammount,
+                'keterangan'        => $request->keterangan,
+            ]);
+
+        
+
+        /*$order->update([
             'order_date'        => $request->order_date,
             'username'          => $request->username,
             'order_id'          => $request->order_id,
@@ -307,7 +320,7 @@ class OrderController extends Controller
             'user_kecamatan'    => $request->user_kecamatan,
             'cod_ammount'       => $request->cod_ammount,
             'keterangan'        => $request->keterangan,
-        ]);
+        ]);*/
 
         Alert::toast('Data berhasil diedit.', 'success');
         return redirect()->route('order.index');

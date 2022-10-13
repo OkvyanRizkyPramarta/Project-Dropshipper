@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Order;
 use App\Models\Informations;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -30,6 +31,13 @@ class Admin2Controller extends Controller
     public function admin2Message()
     {
         return view('admin2.message');
+    }
+
+    public function showImageAdmin2(Order $order)
+    {
+        $image = Image::getImageByOrder($order->id);
+        //dd($image);
+        return view('admin2.showimage', compact('order', 'image'));
     }
 
     public function updateStatusReceivedAdmin2(Order $order)

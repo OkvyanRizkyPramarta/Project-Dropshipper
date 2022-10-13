@@ -29,6 +29,7 @@
 										<thead>
 											<tr>
 												<th class="cell">Product Checking</th>
+												<th class="cell">ID</th>
 												<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
 												<th class="cell">Username</th>
@@ -52,6 +53,7 @@
 												<td class="cell text-center">
 													<input type="checkbox" name="ids[{{ $o->id }}]" value="{{ $o->id }}">
 												</td> 
+												<td class="cell">{{ $o->id }}</td>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
 												<td class="cell">{{ $o->username }}</td>

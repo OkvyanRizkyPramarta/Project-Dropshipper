@@ -69,6 +69,13 @@
 									    <input type="text" class="form-control" id="setting-input-2" 
                                         name="cod_ammount" value="{{ $order->cod_ammount }}">
 									</div>
+									<div class="mb-3">
+									<label for="setting-input-2" class="form-label">Gambar</label>
+										<div>
+											<img width="250px" src="{{asset('storage/'.optional($order->images)->image)}}">
+											<input type="file" name="image" value="{{ $order->image }}"><br>
+										</div>
+									</div>
 								    <div class="mb-3">
 									    <label for="setting-input-3" class="form-label">Keterangan</label>
                                         <style> 

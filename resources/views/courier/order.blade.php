@@ -27,18 +27,19 @@
 								<a class="btn btn-primary" 
 									href="{{ route('order.indexImageKurir') }}">
 											Input Image
-								</a>
+								</a><br> <br>
 							    <div class="table-responsive">
 									<table id="data_users_reguler" class="table app-table-hover mb-0 text-left">
 										<thead>
 											<tr>
-											<th class="cell">OrderDate</th>
+												<th class="cell">ID</th>
+												<th class="cell">OrderDate</th>
 												<th class="cell">OrderID</th>
 												<th class="cell">Username</th>
 												<th class="cell">Customer Address</th>
 												<th class="cell">Customer Phone</th>
 												<th class="cell">COD Mount</th>
-												<th class="cell">Product Checking</th>
+												<th class="cell">Status Confirm</th>
 												<th class="cell">Status Sending</th>
 												<th class="cell">Status COD Ammount</th>
 												<th class="cell">Image POD</th>
@@ -52,6 +53,7 @@
 										<tbody>
 										@foreach($order as $o)
 											<tr>
+												<td class="cell">{{ $o->id }}</td>
 												<td class="cell">{{ $o->order_date }}</td>
 												<td class="cell">{{ $o->order_id }}</td>
 												<td class="cell">{{ $o->username }}</td>
@@ -60,12 +62,12 @@
 												<td class="cell">{{ $o->cod_ammount }}</td>
 												<td class="cell">
 													<span class="badge bg-success">
-														@if ($o->product_checking == 'pending')
+														@if ($o->status_confirm == 'pending')
 														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
 														<a class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
-															<span>DONE</span>
+															<span>CONFIRM</span>
 														@endif
 													</span>
 												</td>
@@ -75,7 +77,7 @@
 														<a href="{{ route('order.updateStatusSentKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusSentPendingKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>SENT</span>
 														@endif
 													</span>
@@ -86,7 +88,7 @@
 														<a href="{{ route('order.updateStatusPaidKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPaidPendingKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PAID</span>
 														@endif
 													</span>
@@ -103,7 +105,7 @@
 														<a href="{{ route('order.updateStatusPodKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>PENDING</span>
 														@else
-														<a href="" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
+														<a href="{{ route('order.updateStatusPodPendingKurir', $o->id) }}" class="btn btn-icon-only btn-rounded mb-0 me-0 btn-sm d-flex align-items-center justify-content-center">
 															<span>POD</span>
 														@endif
 													</span>

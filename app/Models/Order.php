@@ -22,7 +22,6 @@ class Order extends Model
         'user_kelurahan',
         'user_kecamatan',
         'cod_ammount',
-        'product_checking',
         'status_confirm',
         'status_sending',
         'status_cod_ammount',
